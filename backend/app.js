@@ -14,7 +14,7 @@ app.use("/api/v1",product);
 //middleware for errors
 
 app.use(errorMiddleware);
-
+console.log("hello")
 
 
 
