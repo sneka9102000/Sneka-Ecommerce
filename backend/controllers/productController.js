@@ -16,17 +16,17 @@ exports.createProduct = catchAsyncErrors(async (req, res, next) => {
 
 //GET ALL PRODUCTS
 
-exports.getAllProducts =async(req,res,next) => {
+exports.getAllProducts =catchAsyncErrors(async(req,res,next) => {
 
     const  products = await Product.find();
     res.status(200).json ({
         sucess:true,
         products,
     })
-}
+});
 //get product details
 
-exports.getProductDetails = async (req, res, next) => {
+exports.getProductDetails = catchAsyncErrors(async (req, res, next) => {
     const product = await Product.findById(req.params.id);
 
     if(!product){
@@ -37,12 +37,11 @@ exports.getProductDetails = async (req, res, next) => {
         success: true,
         product,
     });
-}
-
+});
 
 //update product --admin
 
-exports.updateProduct = async(req,res,next)=>{
+exports.updateProduct = catchAsyncErrors(async(req,res,next)=>{
     let product = await Product.findById(req.params.id);
 
     if(!product){
@@ -59,11 +58,11 @@ exports.updateProduct = async(req,res,next)=>{
         success: true,
         product,
     });
-}
+});
 
 //delete product
 
-exports.deleteProduct = async(req,res,next) =>{
+exports.deleteProduct = catchAsyncErrors(async(req,res,next) =>{
     const product = await Product.findById(req.params.id);
 
     if(!product){
@@ -75,6 +74,8 @@ exports.deleteProduct = async(req,res,next) =>{
     res.status(200).json({
         success: true,
         message: "Product Delete Successfully",
-    })
-}
+    });
+});
+
+
 
