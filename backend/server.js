@@ -1,7 +1,7 @@
 const app =require("./app");
 const mongoose = require('mongoose')
-// const dotenv=require("dotenv");
-// const connectDatabase = require("./config/database")
+const dotenv=require("dotenv");
+const connectDatabase = require("./config/database")
 
 //Handlin uncaught exception
 process.on("uncaughtException", (err) => {
