@@ -22,6 +22,7 @@ const userSchema = new mongoose.Schema({
       required: [true, "Please Enter Your Password"],
       minLength: [8, "Password should be greater than 8 characters"],
       select: false,
+      trim:true
     },
     avatar: {
         public_id: {
@@ -74,19 +75,30 @@ userSchema.pre("save",async function(next){
         next();
     }
     this.password = bcrypt.hash(this.password,10)
+    //console.log(bcrypt.hash(this.password,10))
 });
 
 //jwt token 
 userSchema.methods.getJWTToken = function (){
     return jwt.sign({id:this._id},""+process.env.JWT_SECRET,{
-        expiresIn:'5d',
+        expiresIn:'5h',
     });
 };
 
 //Compare Password
-userSchema.methods.comparePassword = async function (enteredpassword) {
-  return await bcrypt.compare(enteredpassword,this.password);
+userSchema.methods.comparePassword =  async function (enteredPassword) {
+  console.log(enteredPassword+""+this.password)
+  if(enteredPassword==this.password)
+  {
+    return true
+  }
+  else
+  {
+    return false
+  }
+  //return bcrypt.compare(enteredPassword,this.password);
 };
 
 
 module.exports=mongoose.model("User",userSchema);
+

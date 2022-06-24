@@ -18,7 +18,7 @@
     "mongoose": "^6.4.0",
     "moongoose": "^0.0.5",
     "nodemailer": "^6.7.5",
-    "nodemon": "^2.0.16",
+    "nodemon": "^2.0.18",
     "validator": "^13.7.0"
   }
 }
