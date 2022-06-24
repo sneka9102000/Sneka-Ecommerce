@@ -1,6 +1,7 @@
 const ErrorHandler = require("../utils/errorhandler");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const User = require("../models/userModel");
+const sendToken = require("../utils/jwtToken");
 require("dotenv").config();
 
 // Register a User
@@ -16,6 +17,7 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
           url: "picurl",
         },
     });
+    sendToken(user,201,res);
 
     const token = user.getJWTToken();
 
@@ -35,7 +37,7 @@ exports.loginUser = catchAsyncErrors(async (req, res, next) => {
     return next(new ErrorHandler("Please Enter Email & Password", 400));
   }
 
-  const user = await User.findOne({ email }).select("+password");
+  const user = await User.findOne({ email }).select("+password ");
 
   if (!user) {
     return next(new ErrorHandler("Invalid email or password", 401));
@@ -53,5 +55,7 @@ exports.loginUser = catchAsyncErrors(async (req, res, next) => {
     success:true,
     token,
   });
+
+  sendToken(user,200,res);
 
 });
