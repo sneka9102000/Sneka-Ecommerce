@@ -1,4 +1,4 @@
-const ErrorHander = require("../utils/errorhandler");
+const ErrorHandler = require("../utils/errorhandler");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const User = require("../models/userModel");
 require("dotenv").config();
@@ -26,25 +26,32 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
     });
 
 //Login User
-// exports.loginUser = catchAsyncErrors(async (req, res, next) => {
-//     const { email, password } = req.body;
+exports.loginUser = catchAsyncErrors(async (req, res, next) => {
+    const { email, password } = req.body;
 
-    // checking if user has given password and email both
+    //checking if user has given password and email both
 
-//   if (!email || !password) {
-//     return next(new ErrorHander("Please Enter Email & Password", 400));
-//   }
-//   if (!user) {
-//     return next(new ErrorHander("Invalid email or password", 401));
-//   }
+  if (!email || !password) {
+    return next(new ErrorHandler("Please Enter Email & Password", 400));
+  }
 
-//   const isPasswordMatched = await user.comparePassword(password);
+  const user = await User.findOne({ email }).select("+password");
 
-//   if (!isPasswordMatched) {
-//     return next(new ErrorHander("Invalid email or password", 401));
-//   }
+  if (!user) {
+    return next(new ErrorHandler("Invalid email or password", 401));
+  }
 
+  const isPasswordMatched = await user.comparePassword(password);
 
+  if (!isPasswordMatched) {
+    return next(new ErrorHandler("Invalid email or password", 401));
+  }
 
+  const token  = user.getJWTToken();
 
-// })
+  res.status(200).json({
+    success:true,
+    token,
+  });
+
+});
