@@ -4,7 +4,7 @@ const User = require("../models/userModel");
 const sendToken = require("../utils/jwtToken");
 const bcrypt = require('bcrypt')
 require("dotenv").config();
-const sendEmail=require("../utils/sendEmail");
+ sendEmail=require("const../utils/sendEmail");
 
 // Register a User
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
@@ -99,6 +99,11 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
   } catch (error) {
     user.resetPasswordToken = undefined;
     user.resetPasswordExpire = undefined;
+
+    await user.save({ validateBeforeSave: false });
+
+    return next(new ErrorHandler(error.message, 500));
+  }
 
 
 
