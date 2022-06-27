@@ -1,7 +1,7 @@
 import React from "react";
 import ReactNavbar from "overlay-navbar/dist/lib/ReactNavbar";
 import "overlay-navbar/dist/lib/ReactNavbar.min.css";
-import img from '../../images/logo.png'
+import img from '../../images/logo.webp'
 
 
 const Header = () => {
