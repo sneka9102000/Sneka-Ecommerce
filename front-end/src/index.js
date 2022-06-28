@@ -1,13 +1,15 @@
 import { StrictMode } from "react";
 import ReactDOM from "react-dom";
-import "overlay-navbar/dist/lib/ReactNavbar.min.css";
+// import "overlay-navbar/dist/lib/ReactNavbar.min.css";
+import { Provider } from "react-redux";
+import store from "./store";
 
 import App from "./App";
 
 const rootElement = document.getElementById("root");
 ReactDOM.render(
-  <StrictMode>
+  <Provider store = {store}>
     <App />
-  </StrictMode>,
+  </Provider>,
   rootElement
 );
