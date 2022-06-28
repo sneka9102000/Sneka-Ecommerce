@@ -20,6 +20,7 @@
     "moongoose": "^0.0.5",
     "nodemailer": "^6.7.5",
     "nodemon": "^2.0.18",
+    "react-icons": "^4.4.0",
     "validator": "^13.7.0"
   }
 }
