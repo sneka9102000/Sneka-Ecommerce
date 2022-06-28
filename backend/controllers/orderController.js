@@ -51,7 +51,7 @@ exports.getSingleOrder = catchAsyncErrors(async (req, res, next) => {
   });
 
   // get logged in user  Orders
-exports.myOrders = catchAsyncErrors(async (req, res, next) => {
+exports.userOrders = catchAsyncErrors(async (req, res, next) => {
     const orders = await Order.find({ user: req.user._id });
   
     res.status(200).json({
@@ -95,7 +95,7 @@ exports.updateOrder = catchAsyncErrors(async (req, res, next) => {
     });
   }
   order.orderStatus = req.body.status;
-
+  UserOrders
   if (req.body.status === "Delivered") {
     order.deliveredAt = Date.now();
   }
@@ -119,7 +119,7 @@ exports.deleteOrder = catchAsyncErrors(async (req, res, next) => {
   const order = await Order.findById(req.params.id);
 
   if (!order) {
-    return next(new ErrorHander("Order not found with this Id", 404));
+    return next(new ErrorHandler("Order not found with this Id", 404));
   }
 
   await order.remove();

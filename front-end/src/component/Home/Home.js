@@ -1,7 +1,9 @@
-import React, { Fragment} from "react";
+import React, { Fragment,useEffect} from "react";
 import "./Home.css";
 import Product from "./Product.js"
 import MetaData from "../layout/MetaData";
+import { clearErrors,getProduct } from "../../actions/productAction";
+import {useSelector,useDispatch} from "react-redux";
 
 const product = {
     name:"watch",
@@ -10,8 +12,13 @@ const product = {
     _id:"Sneka",
 
 }
-
 const Home = () => {
+  const dispatch =useDispatch();
+
+  useEffect(() => {
+    dispatch(getProduct());
+  }, [dispatch]);
+
   return (
   <Fragment>
     <MetaData title="WATCH WIZARD" />
@@ -34,12 +41,9 @@ const Home = () => {
         <Product product = {product} />
         <Product product = {product} />
         <Product product = {product} />
-        </div>
-
-
-        
+        </div> 
     </Fragment>
-    );
+  );
 };
 
 export default Home;
