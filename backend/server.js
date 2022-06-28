@@ -1,6 +1,6 @@
 const app =require("./app");
 const mongoose = require('mongoose')
-const dotenv=require("dotenv");
+const dotenv=require("dotenv").config()
 const connectDatabase = require("./config/database")
 
 //Handlin uncaught exception
@@ -26,14 +26,13 @@ process.on("uncaughtException", (err) => {
 
 //unhandled promise rejection
 
-
-
-
+const url = process.env.DB_URI
+console.log(url)
 mongoose.connect("mongodb+srv://sneka:eGzSgZ8N3bnuqbNg@cluster0.5evyr.mongodb.net/SnekaEcommerce?retryWrites=true&w=majority")
 .then(() => {
     console.log("db got connected")
-}).
-then(() => {
+})
+.then(() => {
     app.listen(5050,() => console.log("listening to 5050"))
 })
 .catch(err => console.log("error : ",err.message))
