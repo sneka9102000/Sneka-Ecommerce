@@ -22,18 +22,9 @@ function App(){
           {/* <Routes> */}
       <Header/>
       <Routes>
-
          <Route path="/" element={<Home/>} />
          <Route extact path="/product/:id" element={<ProductDetails/>} /> 
       </Routes>
-      {/* <Routes>
-        <Route exact path="/" component={Home} />
-        </Routes> */}
-        {/* <Home /> */}
-        {/* <Route extact path="/" component={Home} /> */}
-        {/* <Route extact path="/product/:id" component={ProductDetails} />  */}
-        {/* <Route extact path="/sad" component={Loader}/> */}
-        {/* <Product /> */}
       <Footer/>
     </Router>
       // </BrowserRouter>
