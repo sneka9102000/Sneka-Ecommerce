@@ -17,7 +17,7 @@ const Product = ({ product }) => {
       <img src={product.images[0].url} alt={product.name} />
       <p>{product.name}</p>
       <div>
-        <ReactStars {...options} /><span>(256 reviews)</span>
+        <ReactStars {...options} /><span>{product.NumOfReviews}</span>
         <span className="productCardSpan">
           {" "}
           ({product.numOfReviews} Reviews)

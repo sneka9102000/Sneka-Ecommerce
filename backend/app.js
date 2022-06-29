@@ -1,11 +1,12 @@
 const express = require("express");
+const cors = require('cors')
 const app = express();
 const cookieParser= require("cookie-parser")
 const errorMiddleware = require ("./middleware/error")
-
+console.log(cors)
 app.use(express.json())
 app.use(cookieParser());
-
+app.use(cors())
 //Route Imports
 
 const product = require("./routes/productRoute");
