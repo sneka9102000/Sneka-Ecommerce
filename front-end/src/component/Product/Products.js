@@ -4,56 +4,64 @@ import { useSelector, useDispatch } from "react-redux";
 import { clearErrors, getProduct } from "../../actions/productAction";
 import Loader from "../layout/Loader/loader";
 import ProductCard from "../Home/ProductCard";
-// import Pagination from "react-js-pagination";
-// import Slider from "@material-ui/core/Slider";
-// import { useAlert } from "react-alert";
-// import Typography from "@material-ui/core/Typography";
-// import MetaData from "../layout/MetaData";
+import Pagination from "react-js-pagination";
+import Slider from "@material-ui/core/Slider";
+import { useAlert } from "react-alert";
+import Typography from "@material-ui/core/Typography";
+import MetaData from "../layout/MetaData";
 
+
+const categories = [
+  "Titan",
+  "Sonata",
+  "Fastrack",
+  "FireBolt",
+  "DanielWellington",
+  "Imperious",
+  "Citizen",
+];
 
 const Products = ({ match }) => {
-    console.log("match : ",match)
+    //console.log("match : ",match)
   const dispatch = useDispatch();
 
-//   const alert = useAlert();
+  const alert = useAlert();
 
-//   const [currentPage, setCurrentPage] = useState(1);
-//   const [price, setPrice] = useState([0, 25000]);
-//   const [category, setCategory] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [price, setPrice] = useState([0, 25000]);
+  const [category, setCategory] = useState("");
 
-//   const [ratings, setRatings] = useState(0);
+  const [ratings, setRatings] = useState(0);
 
-//   const {
-//     products,
-//     loading,
-//     error,
-//     productsCount,
-//     resultPerPage,
-//     filteredProductsCount,
-//   } = useSelector((state) => state.products);
-const {products,loading,error,productsCount} = useSelector(
-    (state) => state.products 
-);
+  const {
+    products,
+    loading,
+    error,
+    productsCount,
+    resultPerPage,
+    filteredProductsCount,
+  } = useSelector((state) => state.products);
+
 
   const keyword = match.keyword;
 
-//   const setCurrentPageNo = (e) => {
-//     setCurrentPage(e);
-//   };
+  const setCurrentPageNo = (e) => {
+    setCurrentPage(e);
+  };
 
-//   const priceHandler = (event, newPrice) => {
-//     setPrice(newPrice);
-//   };
-//   let count = filteredProductsCount;
+  const priceHandler = (event, newPrice) => {
+    setPrice(newPrice);
+  };
+  let count = filteredProductsCount;
 
   useEffect(() => {
     if (error) {
       alert.error(error);
       dispatch(clearErrors());
     }
-    console.log("keyword from products : ",keyword)
-    dispatch(getProduct(keyword));
-  }, [dispatch, keyword]);
+    //console.log("keyword from products : ",keyword)
+    dispatch(getProduct(keyword,currentPage));
+  }, [dispatch, keyword,currentPage]);
 
   return (
     <Fragment>
@@ -61,7 +69,7 @@ const {products,loading,error,productsCount} = useSelector(
         <Loader />
       ) : (
         <Fragment>
-          {/* <MetaData title="BRANDS -- WATCH WIZARD" /> */}
+          <MetaData title="BRANDS -- WATCH WIZARD" />
           <h2 className="productsHeading">Products</h2>
 
           <div className="products">
@@ -70,8 +78,7 @@ const {products,loading,error,productsCount} = useSelector(
                 <ProductCard key={product._id} product={product} />
               ))}
           </div>
-
-          {/* <div className="filterBox">
+          <div className="filterBox">
             <Typography>Price</Typography>
             <Slider
               value={price}
@@ -109,6 +116,10 @@ const {products,loading,error,productsCount} = useSelector(
               />
             </fieldset>
           </div>
+
+          
+
+
           {resultPerPage < count && (
             <div className="paginationBox">
               <Pagination
@@ -126,7 +137,7 @@ const {products,loading,error,productsCount} = useSelector(
                 activeLinkClass="pageLinkActive"
               />
             </div>
-          )} */}
+          )}
         </Fragment>
       )}
     </Fragment>
