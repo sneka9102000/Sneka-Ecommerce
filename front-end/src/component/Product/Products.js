@@ -60,8 +60,8 @@ const Products = ({ match }) => {
       dispatch(clearErrors());
     }
     //console.log("keyword from products : ",keyword)
-    dispatch(getProduct(keyword,currentPage));
-  }, [dispatch, keyword,currentPage]);
+    dispatch(getProduct(keyword,currentPage,price, category, ratings));
+  }, [dispatch, keyword,currentPage,price, category, ratings, alert, error]);
 
   return (
     <Fragment>

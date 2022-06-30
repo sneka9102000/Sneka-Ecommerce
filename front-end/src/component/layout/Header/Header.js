@@ -51,8 +51,8 @@ const Header = () => {
     <nav  style={{float:"right",display:"inline",margin:"30% 0 0 0"}}> 
   <nav style={{float:"right",display:"inline"}}>
   <Link to="/search"><SearchIcon style={{fontSize:"50px"}}/></Link>
-   <a><ShoppingCartIcon style={{fontSize:"50px"}}/></a>
-   <a><AccountCircleIcon style={{fontSize:"50px"}}/></a>
+  <a><ShoppingCartIcon style={{fontSize:"50px"}}/></a>
+  <Link to="/login"><AccountCircleIcon style={{fontSize:"50px"}}/></Link>
    </nav>
 {/*   
  <SearchIcon style={{display:"inline",fontSize:"50px"}}/> 
