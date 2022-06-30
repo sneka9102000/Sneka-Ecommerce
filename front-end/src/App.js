@@ -28,11 +28,8 @@ function App(){
          <Route path="/" element={<Home/>} />
          <Route extact path="/product/:id" element={<ProductDetails/>} /> 
          <Route extact path="/products" element={<Products/>} />
-         <Route extact path="/products/:keyword" element={<Products/>} />
+         <Route extact path="/products/:keyword" element={<Products match/>} />
          <Route extact path="/search" element={<Search/>} />
-
-
-
       </Routes>
       <Footer/>
     </Router>

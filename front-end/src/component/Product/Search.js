@@ -1,12 +1,16 @@
 import React, { useState, Fragment } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import MetaData from "../layout/MetaData";
+import Products from "./Products";
 import "./Search.css";
 
 const Search = ({ history }) => {
+
   const [keyword, setKeyword] = useState("");
   const navigate=useNavigate();
+
   const searchSubmitHandler = (e) => {
+    console.log("from search...",keyword)
     e.preventDefault();
     if (keyword.trim()) {
     //   history.push(`/products/${keyword}`);
@@ -27,6 +31,10 @@ const Search = ({ history }) => {
         />
         <input type="submit" value="Search" />
       </form>
+      {
+        console.log("kewyord matches : ",keyword)
+      }
+      <Products match={keyword}></Products>
     </Fragment>
   );
 };

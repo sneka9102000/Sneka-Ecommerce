@@ -12,7 +12,7 @@ import ProductCard from "../Home/ProductCard";
 
 
 const Products = ({ match }) => {
-    console.log(match)
+    console.log("match : ",match)
   const dispatch = useDispatch();
 
 //   const alert = useAlert();
@@ -35,7 +35,7 @@ const {products,loading,error,productsCount} = useSelector(
     (state) => state.products 
 );
 
-  const keyword = match.params.keyword;
+  const keyword = match.keyword;
 
 //   const setCurrentPageNo = (e) => {
 //     setCurrentPage(e);
@@ -51,7 +51,7 @@ const {products,loading,error,productsCount} = useSelector(
       alert.error(error);
       dispatch(clearErrors());
     }
-
+    console.log("keyword from products : ",keyword)
     dispatch(getProduct(keyword));
   }, [dispatch, keyword]);
 
