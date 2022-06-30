@@ -12,6 +12,7 @@ import ProductCard from "../Home/ProductCard";
 
 
 const Products = ({ match }) => {
+    console.log(match)
   const dispatch = useDispatch();
 
 //   const alert = useAlert();

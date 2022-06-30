@@ -7,6 +7,7 @@ import { ReactNavbar} from "overlay-navbar"
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import {Link} from 'react-router-dom'
 
 
 const options = {
@@ -49,7 +50,7 @@ const Header = () => {
    <div  style={{display:"inline",position:"absolute",float:"right",margin:"0 0 0 80%",padding:"0 0 0 0",height:"100px"}}>
     <nav  style={{float:"right",display:"inline",margin:"30% 0 0 0"}}> 
   <nav style={{float:"right",display:"inline"}}>
-  <a><SearchIcon style={{fontSize:"50px"}}/></a>
+  <Link to="/search"><SearchIcon style={{fontSize:"50px"}}/></Link>
    <a><ShoppingCartIcon style={{fontSize:"50px"}}/></a>
    <a><AccountCircleIcon style={{fontSize:"50px"}}/></a>
    </nav>
