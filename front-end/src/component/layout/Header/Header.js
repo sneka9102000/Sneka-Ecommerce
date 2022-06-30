@@ -4,6 +4,10 @@ import React from "react";
 import img from '../../../images/logo.webp';
 // import { BiCart } from "react-icons/bi";
 import { ReactNavbar} from "overlay-navbar"
+import SearchIcon from '@mui/icons-material/Search';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+
 
 const options = {
   burgerColorHover: "#eb4034",
@@ -39,7 +43,30 @@ const options = {
 };
 
 const Header = () => {
-  return <ReactNavbar {...options} />;
+  return (
+  //  <div style={{display:"inline",position:"absolute",float:"right"}}>
+  <div>
+   <div  style={{display:"inline",position:"absolute",float:"right",margin:"0 0 0 80%",padding:"0 0 0 0",height:"100px"}}>
+    <nav  style={{float:"right",display:"inline",margin:"30% 0 0 0"}}> 
+  <nav style={{float:"right",display:"inline"}}>
+  <a><SearchIcon style={{fontSize:"50px"}}/></a>
+   <a><ShoppingCartIcon style={{fontSize:"50px"}}/></a>
+   <a><AccountCircleIcon style={{fontSize:"50px"}}/></a>
+   </nav>
+{/*   
+ <SearchIcon style={{display:"inline",fontSize:"50px"}}/> 
+ <SearchIcon style={{display:"inline",position:"absolute",float:"right",fontSize:"50px"}}/>
+<SearchIcon style={{display:"inline",position:"absolute",float:"right",fontSize:"50px"}}/> */}
+ </nav> 
+
+    <ReactNavbar {...options} />
+    
+    {/* </div> */}
+    
+  
+   </div>
+   </div>
+  );
 };
 
 export default Header;

@@ -1,11 +1,12 @@
 import React, { Fragment,useEffect} from "react";
 import "./Home.css";
-import Product from "./Product.js"
+import ProductCard from "./ProductCard.js"
 import MetaData from "../layout/MetaData";
 import { clearErrors,getProduct } from "../../actions/productAction";
 import Loader from "../layout/Loader/loader";
 import {useSelector,useDispatch} from "react-redux";
 import { useAlert } from "react-alert";
+import SearchIcon from '@mui/icons-material/Search';
 
 const Home = () => {
   const alert = useAlert();
@@ -28,6 +29,10 @@ const Home = () => {
       ) : (
         <Fragment>
           <MetaData title="ECOMMERCE" />
+{/* <button style={{display:"inline",position:"absolute",float:"right"}} >click</button> */}
+
+
+
 
           <div className="banner">
             <p>WELCOME TO WATCH WIZARD</p>
@@ -45,7 +50,7 @@ const Home = () => {
           <div className="container" id="container">
             {products &&
               products.map((product) => (
-                <Product key={product._id} product={product} />
+                <ProductCard key={product._id} product={product} />
               ))}
           </div>
         </Fragment>

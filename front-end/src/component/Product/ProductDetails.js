@@ -2,20 +2,25 @@ import React, { Fragment, useEffect } from "react";
 import Carousel from "react-material-ui-carousel";
 import "./ProductDetails.css";
 import { useSelector, useDispatch } from "react-redux";
-import { getProductDetails } from "../../actions/productAction";
+import { getProductDetails,clearErrors } from "../../actions/productAction";
 import { useParams } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
 import ReviewCard from "./ReviewCard.js";
-
+import { useAlert } from "react-alert";
 
 
 const ProductDetails = () => {
     const dispatch = useDispatch();
     const {id}=useParams();
     const{products,loading,error} = useSelector(state=>state.productDetails)
+    
     useEffect(()=>{
+      if(error){
+        alert.error(error);
+        dispatch(clearErrors());
+      }
         dispatch(getProductDetails(id));
-    },[]);
+    },[dispatch,id,error,alert]);
 
     const options = {
       edit: false,
@@ -28,6 +33,7 @@ const ProductDetails = () => {
 
     if(products)
     {
+      console.log(products.reviews)
       return (
         <Fragment>
             <div className="ProductDetails"> 
@@ -79,8 +85,17 @@ const ProductDetails = () => {
           </div>
 
           <h3 className="reviewsHeading">REVIEWS</h3>
-
-          {products.reviews && products.reviews[0] ? (
+        {products.reviews.length==0?
+        <p className="noReviews">No Reviews Yet</p>
+        : products.reviews.map((review)=>(
+          <ReviewCard review={review}/>
+        ))
+        // products.reviews &&
+                // products.reviews.map((review) =>
+                //   <ReviewCard key={review} />
+                // )
+              }
+          {/* {products.reviews && products.reviews[0] ? (
             <div className="reviews">
               {products.reviews &&
                 products.reviews.map((review) =>
@@ -89,7 +104,7 @@ const ProductDetails = () => {
             </div>
           ) : (
             <p className="noReviews">No Reviews Yet</p>
-          )}
+          )} */}
         </Fragment>
     );
   }; 
