@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 
 const LoginSignUp = ({ history, location }) => {
-
+  console.log("hello hi")
   const dispatch = useDispatch();
   const alert = useAlert();
 
@@ -39,8 +39,9 @@ const LoginSignUp = ({ history, location }) => {
   
 
     const loginSubmit = (e) => {
+      console.log("submitted")
         e.preventDefault();
-        dispatch(loginEmail,loginPassword)
+        dispatch(login(loginEmail,loginPassword))
       };
     const registerSubmit = (e) => {
       e.preventDefault();
@@ -52,6 +53,8 @@ const LoginSignUp = ({ history, location }) => {
     myForm.set("password", password);
     myForm.set("avatar", avatar);
     console.log("SignUpForm Submitted");
+    console.log("user signup : ",myForm)
+    dispatch(register(myForm))
   };
 
   const registerDataChange = (e) => {
@@ -71,7 +74,7 @@ const LoginSignUp = ({ history, location }) => {
     }
   };
 
-  const redirect = location.search ? location.search.split("=")[1] : "/account";
+  // const redirect = location.search ? location.search.split("=")[1] : "/account";
 
   useEffect(() => {
     if (error) {
@@ -79,10 +82,10 @@ const LoginSignUp = ({ history, location }) => {
       dispatch(clearErrors());
     }
 
-    if (isAuthenticated) {
-      history.push(redirect);
-    }
-  }, [dispatch, error, alert, history, isAuthenticated, redirect]);
+    // if (isAuthenticated) {
+    //   history.push(redirect);
+    // }
+  }, [dispatch, error, alert, history, isAuthenticated]);
 
     
 

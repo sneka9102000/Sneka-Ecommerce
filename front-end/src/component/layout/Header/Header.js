@@ -1,8 +1,5 @@
 import React from "react";
-// import {ReactNavbar} from "overlay-navbar";
-// import "overlay-navbar/dist/lib/ReactNavbar.min.css";
 import img from '../../../images/logo.webp';
-// import { BiCart } from "react-icons/bi";
 import { ReactNavbar} from "overlay-navbar"
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
@@ -42,7 +39,7 @@ const Header = () => {
     <nav style={{float:"right",display:"inline",margin:"30% 0 0 0"}}> 
   <nav style={{float:"right",display:"inline"}}>
   <Link to="/search"><SearchIcon style={{fontSize:"50px"}}/></Link>
-  <a><ShoppingCartIcon style={{fontSize:"50px"}}/></a>
+  <a href="/"><ShoppingCartIcon style={{fontSize:"50px"}}/></a>
   <Link to="/login"><AccountCircleIcon style={{fontSize:"50px"}}/></Link>
    </nav>
  </nav> 
