@@ -1,13 +1,23 @@
-import React, { Fragment,useRef,useState } from "react";
+import React, { Fragment,useRef,useState,useEffect } from "react";
 import "./LoginSignUp.css";
 import Loader from "../layout/Loader/loader";
 import { Link } from "react-router-dom";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import FaceIcon from "@material-ui/icons/Face";
+import { clearErrors, login, register } from "../../actions/userAction";
+import { useAlert } from "react-alert";
+import { useDispatch, useSelector } from "react-redux";
 
 
-const LoginSignUp = () => {
+const LoginSignUp = ({ history, location }) => {
+
+  const dispatch = useDispatch();
+  const alert = useAlert();
+
+  const { error,isAuthenticated } = useSelector(
+    (state) => state.user
+  );
 
     const loginTab = useRef(null);
     const registerTab = useRef(null);
@@ -29,9 +39,8 @@ const LoginSignUp = () => {
   
 
     const loginSubmit = (e) => {
-        // e.preventDefault();
-        // dispatch(login(loginEmail, loginPassword));
-        console.log("LoginForm Submitted");
+        e.preventDefault();
+        dispatch(loginEmail,loginPassword)
       };
     const registerSubmit = (e) => {
       e.preventDefault();
@@ -43,9 +52,38 @@ const LoginSignUp = () => {
     myForm.set("password", password);
     myForm.set("avatar", avatar);
     console.log("SignUpForm Submitted");
-    
-
   };
+
+  const registerDataChange = (e) => {
+    if (e.target.name === "avatar") {
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        if (reader.readyState === 2) {
+          setAvatarPreview(reader.result);
+          setAvatar(reader.result);
+        }
+      };
+
+      reader.readAsDataURL(e.target.files[0]);
+    } else {
+      setUser({ ...user, [e.target.name]: e.target.value });
+    }
+  };
+
+  const redirect = location.search ? location.search.split("=")[1] : "/account";
+
+  useEffect(() => {
+    if (error) {
+      alert.error(error);
+      dispatch(clearErrors());
+    }
+
+    if (isAuthenticated) {
+      history.push(redirect);
+    }
+  }, [dispatch, error, alert, history, isAuthenticated, redirect]);
+
     
 
     const switchTabs = (e, tab) => {
