@@ -25,50 +25,13 @@ const userSchema = new mongoose.Schema({
       select: false,
       trim:true
     },
-    avatar: {
-        public_id: {
-          type: String,
-          required: true,
-        },
-        url: {
-          type: String,
-          required: true,
-        },
-      },
-      role: {
+    
+    role: {
         type: String,
         default: "user",
       },
-      avatar: {
-        public_id: {
-          type: String,
-          required: true,
-        },
-        url: {
-          type: String,
-          required: true,
-        },
-      },
-      role: {
-        type: String,
-        default: "user",
-      },avatar: {
-    public_id: {
-      type: String,
-      required: true,
-    },
-    url: {
-      type: String,
-      required: true,
-    },
-  },
-  role: {
-    type: String,
-    default: "user",
-  },
-
-  resetPasswordToken: String,
-  resetPasswordExpire: Date,
+     resetPasswordToken: String,
+     resetPasswordExpire: Date,
 });
 
 userSchema.pre("save",async function(next){

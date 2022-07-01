@@ -1,6 +1,7 @@
 const app =require("./app");
 const mongoose = require('mongoose')
 const dotenv=require("dotenv").config()
+const cloudinary = require("cloudinary");
 const connectDatabase = require("./config/database")
 
 //Handlin uncaught exception
@@ -10,21 +11,13 @@ process.on("uncaughtException", (err) => {
     process.exit(1);
 });
 
-//config
-
-// dotenv.config({path:"backend/config/config.env"})
-
 //connecting to database
 
-// connectDatabase()
-
-// const server =app.listen(process.env.PORT,()=> {
-
-//     console.log(`Server is working on http://localhost:${process.env.PORT}`);
-// });
-
-
-//unhandled promise rejection
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+  });
 
 const url = process.env.DB_URI
 console.log(url)

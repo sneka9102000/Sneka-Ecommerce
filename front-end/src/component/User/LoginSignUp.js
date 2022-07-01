@@ -34,8 +34,8 @@ const LoginSignUp = ({ history, location }) => {
     
     const { name, email, password } = user;
 
-    const [avatar, setAvatar] = useState("/Profile.png");
-    const [avatarPreview, setAvatarPreview] = useState("/Profile.png");
+    const [avatar, setAvatar] = useState();
+    const [avatarPreview, setAvatarPreview] = useState();
   
 
     const loginSubmit = (e) => {
@@ -53,8 +53,12 @@ const LoginSignUp = ({ history, location }) => {
     myForm.set("password", password);
     myForm.set("avatar", avatar);
     console.log("SignUpForm Submitted");
-    console.log("user signup : ",myForm)
-    dispatch(register(myForm))
+    console.log("user signup : ",myForm);
+    console.log(name+" "+email+" "+password+" "+avatar+" "+avatarPreview)
+    let userObject = {
+      name,email,password,avatar,avatarPreview
+    }
+    dispatch(register(userObject))
   };
 
   const registerDataChange = (e) => {

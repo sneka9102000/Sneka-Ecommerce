@@ -4,10 +4,22 @@ const User = require("../models/userModel");
 const sendToken = require("../utils/jwtToken");
 const bcrypt = require('bcrypt')
 require("dotenv").config();
+const cloudinary = require("cloudinary");
+
 
 // Register a User
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
+//  console.log("hello")
+//  console.log("Req body : ",req.body)
+  const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
+    folder: "avatars",
+    width: 150,
+    crop: "scale",
+  });
+console.log("hi")
   const {name,email,password} = req.body;
+  // console.log("Req body : ",req.body)
+
   const hashedPass = await bcrypt.hash(password,10)
   //console.log("hashed pass ",hashedPass)
   const user = await User.create({
@@ -15,11 +27,11 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
         email,
         password : hashedPass,
         avatar: {
-          public_id:"this_is_sample",
-          url: "picurl",
+          public_id:myCloud.public_id,
+          url: myCloud.secure_url,
         },
     });
-
+console.log("user object : ",user)
     sendToken(user,201,res);
   });
 
