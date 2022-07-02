@@ -1,4 +1,4 @@
-import React, { Fragment,useRef,useState,useEffect } from "react";
+import React, { Fragment,useRef,useState,useEffect} from "react";
 import "./LoginSignUp.css";
 import Loader from "../layout/Loader/loader";
 import { Link } from "react-router-dom";
@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 
 const LoginSignUp = ({ history, location }) => {
-  console.log("hello hi")
+  //console.log("hello hi")
   const dispatch = useDispatch();
   const alert = useAlert();
 
@@ -34,12 +34,12 @@ const LoginSignUp = ({ history, location }) => {
     
     const { name, email, password } = user;
 
-    const [avatar, setAvatar] = useState();
-    const [avatarPreview, setAvatarPreview] = useState();
+    const [avatar, setAvatar] = useState("/Profile.png");
+    const [avatarPreview, setAvatarPreview] = useState("/Profile.png");
   
 
     const loginSubmit = (e) => {
-      console.log("submitted")
+      //console.log("submitted")
         e.preventDefault();
         dispatch(login(loginEmail,loginPassword))
       };
@@ -52,9 +52,9 @@ const LoginSignUp = ({ history, location }) => {
     myForm.set("email", email);
     myForm.set("password", password);
     myForm.set("avatar", avatar);
-    console.log("SignUpForm Submitted");
-    console.log("user signup : ",myForm);
-    console.log(name+" "+email+" "+password+" "+avatar+" "+avatarPreview)
+    //console.log("SignUpForm Submitted");
+    //console.log("user signup : ",myForm);
+    //console.log(name+" "+email+" "+password+" "+avatar+" "+avatarPreview)
     let userObject = {
       name,email,password,avatar,avatarPreview
     }

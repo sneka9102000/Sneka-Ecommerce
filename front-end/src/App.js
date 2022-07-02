@@ -1,6 +1,4 @@
 import { BrowserRouter as Router,Route,Routes} from "react-router-dom";
-// import ReactNavbar from "overlay-navbar/dist/lib/ReactNavbar";
-// import "overlay-navbar/dist/lib/ReactNavbar.min.css";
 import Header from "./component/layout/Header/Header.js";
 import WebFont from "webfontloader"
 import React from "react";
@@ -10,27 +8,42 @@ import ProductDetails from "./component/Product/ProductDetails.js";
 import Products from "./component/Product/Products.js";
 import Search from "./component/Product/Search.js";
 import LoginSignUp from "./component/User/LoginSignUp.js";
+import store from "./store";
+import { loadUser } from "./actions/userAction";
+import UserOptions from "./component/layout/Header/UserOptions";
+import { useSelector } from "react-redux";
+import Profile from "./component/User/Profile";
+
+
+
+
 
 
 function App(){
+  const { isAuthenticated, user } = useSelector((state) => state.user);
+
   React.useEffect(() => {
     WebFont.load({
       google: {
         families: ["Roboto", "Droid Sans", "Chilanka"],
-      }
-    })
+      },
+    });
+    store.dispatch(loadUser());
     }, [])  
 
     return (
       <Router>
-
       <Header/>
+
+      {isAuthenticated && <UserOptions user={user} />}
+
       <Routes>
          <Route path="/" element={<Home/>} />
          <Route extact path="/product/:id" element={<ProductDetails/>} /> 
          <Route extact path="/products" element={<Products/>} />
          <Route extact path="/products/:keyword" element={<Products match/>} />
          <Route extact path="/search" element={<Search/>} />
+         <Route exact path="/account" element={<Profile/>} />
          <Route extact path="/login" element={<LoginSignUp/>} />
 
       </Routes>
