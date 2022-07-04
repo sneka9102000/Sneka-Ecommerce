@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import "./Cart.css";
 import CartItemCard from "./CartItemCard";
 import { useSelector, useDispatch } from "react-redux";
-// import { useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 import { addItemsToCart, removeItemsFromCart } from "../../actions/cartAction";
 import { Typography } from "@material-ui/core";
 import RemoveShoppingCartIcon from "@material-ui/icons/RemoveShoppingCart";
@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 const Cart = ({ history }) => {
   const dispatch = useDispatch();
   const { cartItems } = useSelector((state) => state.cart);
+  const navigate = useNavigate();
 
   const increaseQuantity = (id, quantity, stock) => {
     const newQty = quantity + 1;
@@ -33,10 +34,9 @@ const Cart = ({ history }) => {
   };
 
   const checkoutHandler = () => {
-    history.push("/login?redirect=shipping");
-    // <Link to="/shipping">View Products</Link>
-
+    navigate("/shipping");
   };
+
 
   return (
     <Fragment>
@@ -69,7 +69,6 @@ const Cart = ({ history }) => {
                       -
                     </button>
                     {item.quantity}
-                    {/* <input type="number" value={item.quantity} readOnly /> */}
                     <button
                       onClick={() =>
                         increaseQuantity(

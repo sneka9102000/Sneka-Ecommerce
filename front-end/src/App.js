@@ -19,8 +19,8 @@ import UpdatePassword from "./component/User/UpdatePassword.js";
 import Cart from "./component/Cart/Cart";
 import Shipping from "./component/Cart/Shipping";
 import ConfirmOrder from "./component/Cart/ConfirmOrder";
-import Payment from "./component/Cart/Payment";
 import OrderSuccess from "./component/Cart/OrderSuccess";
+import MyOrders from "./component/Order/MyOrders";
 
 
 
@@ -67,6 +67,7 @@ function App(){
          <Route extact path="/login" element={<LoginSignUp/>} />
          <Route extact path="/shipping" element={<Shipping/>} />
          <Route extact path="/order/confirm" element={<ConfirmOrder/>} />
+         <Route extact path="/orders" element={<MyOrders/>} />
          <Route extact path="/success" element={<OrderSuccess/>} />
 
 
