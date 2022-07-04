@@ -68,6 +68,8 @@ function App(){
          <Route extact path="/shipping" element={<Shipping/>} />
          <Route extact path="/order/confirm" element={<ConfirmOrder/>} />
          <Route extact path="/orders" element={<MyOrders/>} />
+         <Route extact path="/orders" element={<MyOrders/>} />
+         <Route extact path="/order/:id" element={<MyOrders/>} />
          <Route extact path="/success" element={<OrderSuccess/>} />
 
 
