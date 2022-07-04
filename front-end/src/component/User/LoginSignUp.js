@@ -60,6 +60,7 @@ const LoginSignUp = ({ history, location }) => {
     let userObject = {
       name,email,password,avatar,avatarPreview
     }
+    console.log("user object ",userObject)
     dispatch(register(userObject))
   };
 

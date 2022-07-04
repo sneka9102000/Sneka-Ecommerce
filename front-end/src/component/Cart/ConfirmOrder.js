@@ -9,8 +9,8 @@ import { useNavigate } from "react-router-dom";
 
 const ConfirmOrder = ({ history }) => {
   const { shippingInfo, cartItems } = useSelector((state) => state.cart);
-  const { user } = useSelector((state) => state.user);
-  // console.log(user)
+  const state = useSelector((state) => state.user);
+  console.log(state)
   const navigate = useNavigate();
 
   const subtotal = cartItems.reduce(

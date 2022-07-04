@@ -41,14 +41,13 @@ export const login = (email, password) => async (dispatch) => {
 
 // Register
 export const register = (userData) => async (dispatch) => {
-  //console.log("action : ",userData)
   try {
     dispatch({ type: REGISTER_USER_REQUEST });
 
     const config = { headers: { "Content-Type": "multipart/form-data" } };
 
-    const { data } = await axios.post(`http://localhost:5050/api/v1/register`, userData, config);
-     //console.log("data : ",data)
+    const { data } = await axios.post(`http://localhost:5050/api/v1/register`, userData, config)
+    localStorage.setItem("usersAccessToken",data.token)
     dispatch({ type: REGISTER_USER_SUCCESS, payload: data.user });
   } catch (error) {
     dispatch({
@@ -110,7 +109,7 @@ export const updatePassword = (passwords) => async (dispatch) => {
     const config = { headers: { "Content-Type": "application/json" } };
 
     const { data } = await axios.put(
-      `http://localhost:5050/aavatarPreviewpi/v1/password/update`,
+      `http://localhost:5050/api/v1/password/update`,
       passwords,
       config
     );
@@ -129,3 +128,12 @@ export const updatePassword = (passwords) => async (dispatch) => {
 export const clearErrors = () => async (dispatch) => {
     dispatch({ type: CLEAR_ERRORS });
 };
+
+
+/**
+ * await axios.post(`http://localhost:5050/api/v1/register`, userData, config).
+    then((token) => {
+      console.log("token : ",token.data.token)
+      localStorage.setItem("accessToken",token.data.token)
+    })
+ */

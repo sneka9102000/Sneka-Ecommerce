@@ -31,8 +31,8 @@ const UpdatePassword = ({ history }) => {
 
     let userObject = {
         oldPassword,newPassword,confirmPassword
-      }
-
+    }
+      console.log(userObject)
     dispatch(updatePassword(userObject));
   };
 
