@@ -1,5 +1,4 @@
 import React, { Fragment, useEffect,useState } from "react";
-import Carousel from "react-material-ui-carousel";
 import "./ProductDetails.css";
 import { useSelector, useDispatch } from "react-redux";
 import { getProductDetails,clearErrors,newReview } from "../../actions/productAction";
@@ -15,17 +14,16 @@ import {
   DialogTitle,
   Button,
 } from "@material-ui/core";
-import Products from "./Products";
-import { NEW_REVIEW_RESET } from "../../constants/productConstants";
-
 
 
 const ProductDetails = () => {
     const dispatch = useDispatch();
     const {id}=useParams();
     const alert = useAlert();
-    const{products,loading,error} = useSelector(state=>state.productDetails)
-    
+    const{products,error} = useSelector(
+      (state)=>state.productDetails
+      )
+
     useEffect(()=>{
       if(error){
         alert.error(error);
@@ -89,16 +87,17 @@ const ProductDetails = () => {
         dispatch(clearErrors());
       }
   
-      // if (reviewError) {
-      //   alert.error(reviewError);
-      //   dispatch(clearErrors());
-      // }
+      // // if (reviewError) {
+      // //   alert.error(reviewError);
+      // //   dispatch(clearErrors());
+      // // }import Products from "./Products";
+
   
-      // if (success) {
-      //   alert.success("Review Submitted Successfully");
-      //   dispatch({ type: NEW_REVIEW_RESET });
-      // }
-      dispatch(getProductDetails(id));
+      // // if (success) {
+      // //   alert.success("Review Submitted Successfully");
+      // //   dispatch({ type: NEW_REVIEW_RESET });
+      // // }
+      // dispatch(getProductDetails(id));
     }, [dispatch,id, error, alert]);
   
 
@@ -152,8 +151,8 @@ const ProductDetails = () => {
                 Description : <p>{products.description}</p>
               </div>
 
-              <button>
-                 Submit Review
+              <button onClick={submitReviewToggle} className="submitReview">
+                Submit Review
               </button>
             </div>
           </div>
