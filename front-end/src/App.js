@@ -9,7 +9,6 @@ import Products from "./component/Product/Products.js";
 import Search from "./component/Product/Search.js";
 import LoginSignUp from "./component/User/LoginSignUp.js";
 import store from "./store";
-// import { loadUser } from "./actions/userAction";
 import UserOptions from "./component/layout/Header/UserOptions";
 import { useSelector } from "react-redux";
 import Profile from "./component/User/Profile";
@@ -22,6 +21,7 @@ import ConfirmOrder from "./component/Cart/ConfirmOrder";
 import OrderSuccess from "./component/Cart/OrderSuccess";
 import MyOrders from "./component/Order/MyOrders";
 import OrderDetails from "./component/Order/OrderDetails";
+import Dashboard from "./component/admin/Dashboard.js";
 
 
 
@@ -69,6 +69,7 @@ function App(){
          <Route extact path="/order/confirm" element={<ConfirmOrder/>} />
          <Route extact path="/orders" element={<MyOrders/>} />
          <Route extact path="/order/:id" element={<OrderDetails/>} />
+         <Route extact path="/admin/dashboard" element={<Dashboard/>} />
          <Route extact path="/success" element={<OrderSuccess/>} />
 
 
