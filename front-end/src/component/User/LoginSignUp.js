@@ -49,13 +49,6 @@ const LoginSignUp = ({ location }) => {
       };
     const registerSubmit = (e) => {
       e.preventDefault();
-
-    const myForm = new FormData();
-
-    myForm.set("name", name);
-    myForm.set("email", email);
-    myForm.set("password", password);
-    myForm.set("avatar", avatar);
     
     let userObject = {
       name,email,password,avatar,avatarPreview
