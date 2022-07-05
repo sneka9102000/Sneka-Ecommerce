@@ -25,11 +25,6 @@ const UpdatePassword = ({ history }) => {
   const updatePasswordSubmit = (e) => {
     e.preventDefault();
 
-    const myForm = new FormData();
-
-    myForm.set("oldPassword", oldPassword);
-    myForm.set("newPassword", newPassword);
-    myForm.set("confirmPassword", confirmPassword);
 
     let userObject = {
         oldPassword,newPassword,confirmPassword
@@ -78,7 +73,7 @@ const UpdatePassword = ({ history }) => {
                   <VpnKeyIcon />
                   <input
                     type="password"
-                    placeholder="Old Password"
+                    placeholder="Enter your Old Password"
                     required
                     value={oldPassword}
                     onChange={(e) => setOldPassword(e.target.value)}
@@ -89,7 +84,7 @@ const UpdatePassword = ({ history }) => {
                   <LockOpenIcon />
                   <input
                     type="password"
-                    placeholder="New Password"
+                    placeholder="Enter your New Password"
                     required
                     value={newPassword}
                     onChange={(e) => setNewPassword(e.target.value)}
@@ -99,7 +94,7 @@ const UpdatePassword = ({ history }) => {
                   <LockIcon />
                   <input
                     type="password"
-                    placeholder="Confirm Password"
+                    placeholder="Again Enter new password to Confirm"
                     required
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
@@ -107,7 +102,7 @@ const UpdatePassword = ({ history }) => {
                 </div>
                 <input
                   type="submit"
-                  value="Change" onClick={() => changeHandler()}
+                  value="Reset Password" onClick={() => changeHandler()}
                   className="updatePasswordBtn"
                 />
               </form>

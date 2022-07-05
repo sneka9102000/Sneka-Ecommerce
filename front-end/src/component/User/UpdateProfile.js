@@ -26,12 +26,6 @@ const UpdateProfile = () => {
   const updateProfileSubmit = (e) => {
     e.preventDefault();
 
-    const myForm = new FormData();
-
-    myForm.set("name", name);
-    myForm.set("email", email);
-    myForm.set("avatar", avatar);
-
     let userObject = {
         name,email,avatar
       }

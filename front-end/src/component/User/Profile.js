@@ -5,7 +5,7 @@ import { Link} from "react-router-dom";
 import "../User/Usercss/Profile.css";
 import { useNavigate } from "react-router-dom";
 
-const Profile = ({ history }) => {
+const Profile = ({ }) => {
   const { user, isAuthenticated } = useSelector((state) => state.user);
   const navigate = useNavigate();
   
@@ -14,9 +14,9 @@ const Profile = ({ history }) => {
     if (isAuthenticated === false) {
       navigate("/login");
     }
-  }, [history, isAuthenticated]);
+  }, [isAuthenticated]);
   return (
-        <Fragment>
+        <div>
           <MetaData title={`${user.name}'s Profile`} />
           <div className="profileContainer">
             <div>
@@ -44,6 +44,6 @@ const Profile = ({ history }) => {
               </div>
             </div>
           </div>
-        </Fragment>
+        </div>
       )};
 export default Profile;
