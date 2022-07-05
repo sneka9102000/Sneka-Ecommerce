@@ -28,14 +28,14 @@ import Dashboard from "./component/admin/Dashboard.js";
 function App(){
   const { isAuthenticated, user } = useSelector((state) => state.user);
 
-  React.useEffect(() => {
-    WebFont.load({
-      google: {
-        families: ["Roboto", "Droid Sans", "Chilanka"],
-      },
-    });
-    // store.dispatch(loadUser());
-    }, [])  
+  // React.useEffect(() => {
+  //   WebFont.load({
+  //     google: {
+  //       families: ["Roboto", "Droid Sans", "Chilanka"],
+  //     },
+  //   });
+  //   // store.dispatch(loadUser());
+  //   }, [])  
 
     return (
       <Router>

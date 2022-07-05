@@ -23,11 +23,11 @@ const Home = () => {
   }, [dispatch,error,alert]);
 
   return (
-    <Fragment>
+    <div>
       {loading ? (
         <Loader />
       ) : (
-        <Fragment>
+        <div>
           <MetaData title="WATCH WIZARD" />
 {/* <button style={{display:"inline",position:"absolute",float:"right"}} >click</button> */}
 
@@ -50,9 +50,9 @@ const Home = () => {
                 <ProductCard key={product._id} product={product} />
               ))}
           </div>
-        </Fragment>
+        </div>
       )}
-    </Fragment>
+    </div>
   );
 };
 

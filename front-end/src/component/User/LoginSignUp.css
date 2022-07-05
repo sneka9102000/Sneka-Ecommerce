@@ -167,10 +167,10 @@
       width: 100vw;
       height: 95vh;
     }
-    .login_signUp_toggle {
+    .LoginSignUpToggle {
       height: 5vmax;
     }
-    .login_signUp_toggle > p {
+    .LoginSignUpToggle > p {
       font: 300 1.5vmax "Roboto";
     }
   

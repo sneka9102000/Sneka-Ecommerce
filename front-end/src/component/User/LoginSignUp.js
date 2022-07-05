@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 
-const LoginSignUp = ({ history, location }) => {
+const LoginSignUp = ({ location }) => {
   //console.log("hello hi")
   const dispatch = useDispatch();
   const alert = useAlert();
@@ -54,9 +54,7 @@ const LoginSignUp = ({ history, location }) => {
     myForm.set("email", email);
     myForm.set("password", password);
     myForm.set("avatar", avatar);
-    //console.log("SignUpForm Submitted");
-    //console.log("user signup : ",myForm);
-    //console.log(name+" "+email+" "+password+" "+avatar+" "+avatarPreview)
+    
     let userObject = {
       name,email,password,avatar,avatarPreview
     }
@@ -92,7 +90,7 @@ const LoginSignUp = ({ history, location }) => {
     if (isAuthenticated) {
       navigate(redirect);
     }
-  }, [dispatch, error, alert, history, isAuthenticated]);
+  }, [dispatch, error, alert,isAuthenticated]);
 
     
 
@@ -115,11 +113,11 @@ const LoginSignUp = ({ history, location }) => {
       
 
   return (
-        <Fragment>
+        <div>
           <div className="LoginSignUpContainer">
             <div className="LoginSignUpBox">
               <div>
-                <div className="login_signUp_toggle">
+                <div className="LoginSignUpToggle">
                   <p onClick={(e) => switchTabs(e, "login")}>LOGIN</p>
                   <p onClick={(e) => switchTabs(e, "register")}>REGISTER</p>
                 </div>
@@ -133,6 +131,9 @@ const LoginSignUp = ({ history, location }) => {
                     placeholder="Email"
                     required
                     value={loginEmail}
+                    //console.log("SignUpForm Submitted");
+                    //console.log("user signup : ",myForm);
+                    //console.log(name+" "+email+" "+password+" "+avatar+" "+avatarPreview)
                     onChange={(e) => setLoginEmail(e.target.value)}
                   />
                 </div>
@@ -202,7 +203,7 @@ const LoginSignUp = ({ history, location }) => {
               </form> 
             </div>
           </div>
-        </Fragment>
+        </div>
       )}
 
 export default LoginSignUp;
