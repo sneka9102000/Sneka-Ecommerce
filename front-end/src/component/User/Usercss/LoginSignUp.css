@@ -18,11 +18,11 @@
     box-sizing: border-box;
     overflow: hidden;
   }
-  .login_signUp_toggle {
+  .LoginSignUpToggle {
     display: flex;
     height: 3vmax;
   }
-  .login_signUp_toggle > p {
+  .LoginSignUpToggle > p {
     color: rgba(0, 0, 0, 0.678);
     font: 300 1vmax "Roboto";
     transition: all 0.5s;
@@ -31,7 +31,7 @@
     place-items: center;
     width: 100%;
   }
-  .login_signUp_toggle > p:hover {
+  .LoginSignUpToggle > p:hover {
     color: tomato;
   }
   
@@ -170,7 +170,7 @@
     .LoginSignUpToggle {
       height: 5vmax;
     }
-    .LoginSignUpToggle > p {
+    .login_signUp_toggle > p {
       font: 300 1.5vmax "Roboto";
     }
   

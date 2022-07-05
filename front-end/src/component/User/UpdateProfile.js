@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
-import "./UpdateProfile.css";
+import "../User/Usercss/UpdateProfile.css";
 import Loader from "../layout/Loader/loader";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import FaceIcon from "@material-ui/icons/Face";
@@ -10,7 +10,7 @@ import { UPDATE_PROFILE_RESET } from "../../constants/userConstants";
 import MetaData from "../layout/MetaData";
 import { useNavigate } from "react-router-dom";
 
-const UpdateProfile = ({ history }) => {
+const UpdateProfile = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
   const navigate = useNavigate();
@@ -74,7 +74,7 @@ const UpdateProfile = ({ history }) => {
         type: UPDATE_PROFILE_RESET,
       });
     }
-  }, [dispatch, error, alert, history, user, isUpdated]);
+  }, [dispatch, error, alert, user, isUpdated]);
 
   const changeHandler = (event) => {
     navigate('/account')

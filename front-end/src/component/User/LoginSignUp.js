@@ -1,5 +1,5 @@
 import React, { Fragment,useRef,useState,useEffect} from "react";
-import "./LoginSignUp.css";
+import "../User/Usercss/LoginSignUp.css";
 import Loader from "../layout/Loader/loader";
 import { Link } from "react-router-dom";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
@@ -43,6 +43,8 @@ const LoginSignUp = ({ location }) => {
     const loginSubmit = (e) => {
       //console.log("submitted")
         e.preventDefault();
+
+
         dispatch(login(loginEmail,loginPassword))
       };
     const registerSubmit = (e) => {
@@ -62,6 +64,7 @@ const LoginSignUp = ({ location }) => {
     dispatch(register(userObject))
   };
 
+
   const registerDataChange = (e) => {
     if (e.target.name === "avatar") {
       const reader = new FileReader();
@@ -73,13 +76,12 @@ const LoginSignUp = ({ location }) => {
         }
       };
 
+
       reader.readAsDataURL(e.target.files[0]);
     } else {
       setUser({ ...user, [e.target.name]: e.target.value });
     }
   };
-
-  const redirect = window.location.search ? location.search.split("=")[1] : "/account";
 
   useEffect(() => {
     if (error) {
@@ -88,7 +90,7 @@ const LoginSignUp = ({ location }) => {
     }
 
     if (isAuthenticated) {
-      navigate(redirect);
+      navigate(window.location.search ? location.search.split("=")[1] : "/account");
     }
   }, [dispatch, error, alert,isAuthenticated]);
 
@@ -128,12 +130,9 @@ const LoginSignUp = ({ location }) => {
                   <MailOutlineIcon />
                   <input
                     type="email"
-                    placeholder="Email"
+                    placeholder="Enter your Email Id"
                     required
                     value={loginEmail}
-                    //console.log("SignUpForm Submitted");
-                    //console.log("user signup : ",myForm);
-                    //console.log(name+" "+email+" "+password+" "+avatar+" "+avatarPreview)
                     onChange={(e) => setLoginEmail(e.target.value)}
                   />
                 </div>
@@ -141,7 +140,7 @@ const LoginSignUp = ({ location }) => {
                   <LockOpenIcon />
                   <input
                     type="password"
-                    placeholder="Password"
+                    placeholder="Enter the Password"
                     required
                     value={loginPassword}
                     onChange={(e) => setLoginPassword(e.target.value)}
@@ -160,7 +159,7 @@ const LoginSignUp = ({ location }) => {
                   <FaceIcon />
                   <input
                     type="text"
-                    placeholder="Name"
+                    placeholder="Enter your Name"
                     required
                     name="name"
                     value={name}
@@ -171,7 +170,7 @@ const LoginSignUp = ({ location }) => {
                   <MailOutlineIcon />
                   <input
                     type="email"
-                    placeholder="Email"
+                    placeholder="Enter your Email Id"
                     required
                     name="email"
                     value={email}
@@ -182,7 +181,7 @@ const LoginSignUp = ({ location }) => {
                   <LockOpenIcon />
                   <input
                     type="password"
-                    placeholder="Password"
+                    placeholder="Enter the Password"
                     required
                     name="password"
                     value={password}
