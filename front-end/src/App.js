@@ -9,7 +9,7 @@ import Products from "./component/Product/Products.js";
 import Search from "./component/Product/Search.js";
 import LoginSignUp from "./component/User/LoginSignUp.js";
 import store from "./store";
-import { loadUser } from "./actions/userAction";
+// import { loadUser } from "./actions/userAction";
 import UserOptions from "./component/layout/Header/UserOptions";
 import { useSelector } from "react-redux";
 import Profile from "./component/User/Profile";
@@ -34,7 +34,7 @@ function App(){
         families: ["Roboto", "Droid Sans", "Chilanka"],
       },
     });
-    store.dispatch(loadUser());
+    // store.dispatch(loadUser());
     }, [])  
 
     return (

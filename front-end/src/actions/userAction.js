@@ -57,20 +57,20 @@ export const register = (userData) => async (dispatch) => {
   }
 };
 
-// Load User
-export const loadUser = () => async (dispatch) => {
-  try {
-    console.log("before dispatch")
-    dispatch({ type: LOAD_USER_REQUEST });
-    console.log("after dispatch")
-    const { data } = await axios.get(`http://localhost:5050/api/v1/me`);
-    //console.log("user"+data)
-    console.log('after request')
-    dispatch({ type: LOAD_USER_SUCCESS, payload: data.user });
-  } catch (error) {
-    dispatch({ type: LOAD_USER_FAIL, payload: error.response.data.message });
-  }
-};
+// // Load User
+// export const loadUser = () => async (dispatch) => {
+//   try {
+//     console.log("before dispatch")
+//     dispatch({ type: LOAD_USER_REQUEST });
+//     console.log("after dispatch")
+//     const { data } = await axios.get(`http://localhost:5050/api/v1/me`);
+//     //console.log("user"+data)
+//     console.log('after request')
+//     dispatch({ type: LOAD_USER_SUCCESS, payload: data.user });
+//   } catch (error) {
+//     dispatch({ type: LOAD_USER_FAIL, payload: error.response.data.message });
+//   }
+// };
 
 // Logout User
 export const logout = () => async (dispatch) => {
