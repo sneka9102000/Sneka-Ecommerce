@@ -23,7 +23,7 @@ import MyOrders from "./component/Order/MyOrders";
 import OrderDetails from "./component/Order/OrderDetails";
 import Dashboard from "./component/Admin/Dashboard.js";
 import ProductList from "./component/Admin/ProductList.js";
-import NewProduct from "./component/Admin/NewProduct";
+// import NewProduct from "./component/Admin/NewProduct";
 
 
 
@@ -86,17 +86,15 @@ function App(){
           isAdmin={true}
           element={ProductList}
         />
-        <Route
+        {/* <Route
           exact
           path="/admin/product"
           isAdmin={true}
           element={NewProduct}
-        />
-
-
+        /> */}
 
       </Routes>
-      <Footer/>
+      {/* <Footer/> */}
     </Router>
 
   );

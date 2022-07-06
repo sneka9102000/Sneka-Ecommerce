@@ -15,16 +15,16 @@ import RateReviewIcon from "@material-ui/icons/RateReview";
 
 const Sidebar = () => {
   return (
-    <div className="sidebar">
+    <div  className="sidebar">
       <Link to="/">
-        <img src={logo} alt="WatchWizard" />
+        <img src={logo} width={200} alt="WatchWizard" />
       </Link>
       <Link to="/admin/dashboard">
             <p>
               <DashboardIcon /> Dashboard
             </p>
           </Link>
-      <TreeView
+      <TreeView 
         defaultCollapseIcon={<ExpandMoreIcon />}
         defaultExpandIcon={<ImportExportIcon />}
       >
