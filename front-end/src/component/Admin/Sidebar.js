@@ -12,6 +12,7 @@ import DashboardIcon from "@material-ui/icons/Dashboard";
 import PeopleIcon from "@material-ui/icons/People";
 import RateReviewIcon from "@material-ui/icons/RateReview";
 
+
 const Sidebar = () => {
   return (
     <div className="sidebar">
@@ -19,26 +20,23 @@ const Sidebar = () => {
         <img src={logo} alt="WatchWizard" />
       </Link>
       <Link to="/admin/dashboard">
-        <p>
-          <DashboardIcon /> Dashboard
-        </p>
-      </Link>
-      <Link>
-        <TreeView
-          defaultCollapseIcon={<ExpandMoreIcon />}
-          defaultExpandIcon={<ImportExportIcon />}
-        >
-          <TreeItem nodeId="1" label="Products">
-            <Link to="/admin/products">
-              <TreeItem nodeId="2" label="All" icon={<PostAddIcon />} />
-            </Link>
-
-            <Link to="/admin/product">
-              <TreeItem nodeId="3" label="Create" icon={<AddIcon />} />
-            </Link>
-          </TreeItem>
-        </TreeView>
-      </Link>
+            <p>
+              <DashboardIcon /> Dashboard
+            </p>
+          </Link>
+      <TreeView
+        defaultCollapseIcon={<ExpandMoreIcon />}
+        defaultExpandIcon={<ImportExportIcon />}
+      >
+        <TreeItem nodeId="1" label="Products">
+          <Link to="/admin/product">
+            <TreeItem nodeId="3" label="Create" icon={<AddIcon />} />
+          </Link>
+          <Link to="/admin/products">
+            <TreeItem nodeId="2" label="All" icon={<PostAddIcon />} />
+          </Link>
+        </TreeItem>
+      </TreeView>
       <Link to="/admin/orders">
         <p>
           <ListAltIcon />
@@ -56,8 +54,8 @@ const Sidebar = () => {
           Reviews
         </p>
       </Link>
-    </div>
-  );
-};
 
+    </div>
+  )
+};
 export default Sidebar;

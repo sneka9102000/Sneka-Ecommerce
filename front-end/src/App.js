@@ -21,7 +21,10 @@ import ConfirmOrder from "./component/Cart/ConfirmOrder";
 import OrderSuccess from "./component/Cart/OrderSuccess";
 import MyOrders from "./component/Order/MyOrders";
 import OrderDetails from "./component/Order/OrderDetails";
-import Dashboard from "./component/admin/Dashboard.js";
+import Dashboard from "./component/Admin/Dashboard.js";
+import ProductList from "./component/Admin/ProductList.js";
+import NewProduct from "./component/Admin/NewProduct";
+
 
 
 
@@ -71,6 +74,25 @@ function App(){
          <Route extact path="/order/:id" element={<OrderDetails/>} />
          <Route extact path="/admin/dashboard" element={<Dashboard/>} />
          <Route extact path="/success" element={<OrderSuccess/>} />
+         <Route
+          isAdmin={true}
+          exact
+          path="/admin/dashboard"
+          element={Dashboard}
+        />
+        <Route
+          exact
+          path="/admin/products"
+          isAdmin={true}
+          element={ProductList}
+        />
+        <Route
+          exact
+          path="/admin/product"
+          isAdmin={true}
+          element={NewProduct}
+        />
+
 
 
       </Routes>
