@@ -13,7 +13,6 @@ import ValidateLogin from "../../utils/validateLogin";
 
 
 const LoginSignUp = ({ location }) => {
-  //console.log("hello hi")
   const dispatch = useDispatch();
   const alert = useAlert();
   const navigate = useNavigate();
@@ -80,7 +79,6 @@ const LoginSignUp = ({ location }) => {
 
 
   const loginSubmit = (e) => {
-    //console.log("submitted")
     e.preventDefault();
     const isValid = validate();
 

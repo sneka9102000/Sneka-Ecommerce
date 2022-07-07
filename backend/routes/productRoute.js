@@ -8,6 +8,10 @@ const productController = new ProductController()
 const router = express.Router ();
 
 router.route("/products").get(productController.getAllProducts)
+router
+  .route("/admin/products")
+  .get(isAuthenticatedUser, authorizeRoles("admin"),productController.getAdminProducts);
+
 router.route("/product/new").post(isAuthenticatedUser,authorizeRoles("admin"),productController.createProduct)
 router.route("/product/:id").put(isAuthenticatedUser,authorizeRoles("admin"),productController.updateProduct).delete(isAuthenticatedUser,authorizeRoles("admin"),productController.deleteProduct)
 

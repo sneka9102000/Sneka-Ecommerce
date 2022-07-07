@@ -111,7 +111,7 @@ export const getProductDetails = (id) => async (dispatch) => {
     }
   };
 
-  // NEW REVIEW
+  // NEW REVIEWproductController
 export const newReview = (reviewData) => async (dispatch) => {
   try {
     dispatch({ type: NEW_REVIEW_REQUEST });
