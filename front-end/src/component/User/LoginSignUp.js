@@ -86,7 +86,7 @@ const LoginSignUp = ({ location }) => {
 
   const validLogin = () => {
 
-    console.log("Cred : " + loginEmail, loginPassword);
+    // console.log("Cred : " + loginEmail, loginPassword);
 
     const error = ValidateLogin(loginEmail, loginPassword)
 
@@ -195,7 +195,7 @@ const LoginSignUp = ({ location }) => {
             <button ref={switcherTab}></button>
           </div>
           <form className="loginForm" ref={loginTab} onSubmit={loginSubmit}>
-            <div className="loginEmail" style={{ display: "inline" }}>
+            <div className="loginEmail">
               <MailOutlineIcon style={{ margin: "1% 0 0 0" }} />
               <input
                 type="text"
@@ -206,7 +206,7 @@ const LoginSignUp = ({ location }) => {
               />
               <strong>{loginEmailError}</strong>
             </div>
-            <div className="loginPassword" style={{ display: "block" }}>
+            <div className="loginPassword">
               <LockOpenIcon style={{ margin: "1% 0 0 0" }} />
               <input
                 type="password"
