@@ -23,6 +23,9 @@ const LoginSignUp = ({ location }) => {
   let [passwordError, setPasswordError] = useState("");
   let [nameError, setNameError] = useState("");
 
+  let [loginEmailError, setLoginEmailError] = useState("");
+  let [loginPasswordError, setLoginPasswordError] = useState("");
+
   const { error, isAuthenticated } = useSelector(
     (state) => state.user
   );
@@ -48,30 +51,57 @@ const LoginSignUp = ({ location }) => {
   const [avatar, setAvatar] = useState("/Profile.png");
   const [avatarPreview, setAvatarPreview] = useState("/Profile.png");
 
-  const validate = () => {
+  const validRegister = () => {
+    console.log("in validate Register")
+
+    const error = ValidateRegister(name,email,password)
+
+    let nameError = error.nameError;
+    let emailError = error.emailError;
+    let passwordError = error.passwordError;
+
+    const nameField = document.getElementById('name');
+    const emailField = document.getElementById('email');
+    const passwordField = document.getElementById('password');
+
+    if(nameError) {
+        setNameError(nameError);
+    } 
+    
+    if(emailError) {
+        setEmailError(emailError);
+    }
+    
+    if (passwordError) {
+        setPasswordError(passwordError)
+    }
+
+    if(nameError || emailError || passwordError) {
+        return false;
+    }
+
+    return true
+
+}
+
+  const validLogin = () => {
 
     console.log("Cred : " + loginEmail, loginPassword);
 
     const error = ValidateLogin(loginEmail, loginPassword)
-    const regerror = ValidateRegister(name, email, password)
 
-    let nameError = regerror.nameError;
     let emailError = error.emailError;
     let passwordError = error.passwordError;
 
-    if (nameError) {
-      setNameError(nameError);
-    }
-
     if (emailError) {
-      setEmailError(emailError);
+      setLoginEmailError(emailError);
     }
 
     if (passwordError) {
-      setPasswordError(passwordError)
+      setLoginPasswordError(passwordError)
     }
 
-    if (emailError || passwordError || nameError) {
+    if (emailError || passwordError) {
       return false;
     }
 
@@ -81,7 +111,8 @@ const LoginSignUp = ({ location }) => {
 
   const loginSubmit = (e) => {
     e.preventDefault();
-    const isValid = validate();
+    const isValid = validLogin();
+    console.log(isValid)
     if (isValid) {
       dispatch(login(loginEmail, loginPassword))
     }
@@ -89,7 +120,7 @@ const LoginSignUp = ({ location }) => {
   const registerSubmit = (e) => {
     e.preventDefault();
 
-    const isValid = validate()
+    const isValid = validRegister()
 
     console.log("Valid statement: "+isValid)
 
@@ -173,7 +204,7 @@ const LoginSignUp = ({ location }) => {
                 value={loginEmail}
                 onChange={(e) => setLoginEmail(e.target.value)}
               />
-              <strong>{emailError}</strong>
+              <strong>{loginEmailError}</strong>
             </div>
             <div className="loginPassword" style={{ display: "block" }}>
               <LockOpenIcon style={{ margin: "1% 0 0 0" }} />
@@ -184,7 +215,7 @@ const LoginSignUp = ({ location }) => {
                 value={loginPassword}
                 onChange={(e) => setLoginPassword(e.target.value)}
               /><br />
-              <strong >{passwordError}</strong>
+              <strong >{loginPasswordError}</strong>
             </div>
             <Link to="/password/forgot">Forget Password ?</Link>
             <input type="submit" value="Login" className="loginBtn" />
