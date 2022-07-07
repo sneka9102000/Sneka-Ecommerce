@@ -34,7 +34,7 @@ const Search = ({ history }) => {
       {
         console.log("kewyord matches : ",keyword)
       }
-      <Products match={keyword}></Products>
+      {/* <Products match={keyword}></Products> */}
     </Fragment>
   );
 };

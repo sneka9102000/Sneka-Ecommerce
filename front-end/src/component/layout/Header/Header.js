@@ -19,7 +19,7 @@ const options = {
   link3Text: "Contact",
   link4Text: "About",
   link1Url: "/",
-  link2Url: "/products",
+  link2Url: "/#container",
   link3Url: "/contact",
   link4Url: "/about",
   link1Size: "1.3vmax",

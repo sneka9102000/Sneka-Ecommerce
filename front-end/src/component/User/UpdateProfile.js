@@ -71,7 +71,7 @@ const UpdateProfile = () => {
   }, [dispatch, error, alert, user, isUpdated]);
 
   const changeHandler = (event) => {
-    navigate('/account')
+ //   navigate('/account')
   }
   
   return (
