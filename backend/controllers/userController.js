@@ -9,9 +9,9 @@ const cloudinary = require("cloudinary");
 class UserController {
 
   registerUser = catchAsyncErrors(async (req, res, next) => {
-    //  console.log("hello")
-    //  console.log("Req body : ",req.body)
-    const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
+    
+    try {
+      const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
       folder: "avatars",
       width: 150,
       crop: "scale",
@@ -31,15 +31,19 @@ class UserController {
         url: myCloud.secure_url,
       },
     });
-    // console.log("user object : ",user)
     sendToken(user, 201, res);
+  } 
+  catch (err) {
+    res.status(500).json({error: err})
+  }
   });
 
+
+
   loginUser = catchAsyncErrors(async (req, res, next) => {
+
+  try{
     const { email, password } = req.body;
-    //console.log(email+" "+password)
-  
-    //checking if user has given password and email both
   
     if (!email || !password) {
       return next(new ErrorHandler("Please Enter Email & Password", 400));
@@ -48,21 +52,27 @@ class UserController {
     const user = await User.findOne({ email }).select("+password");
   
     if (!user) {
-      //console.log(user)
       return next(new ErrorHandler("Invalid email or password", 401));
     }
   
     const isPasswordMatched = await user.comparePassword(password);
-    //console.log(isPasswordMatched+" match result")
     if (!isPasswordMatched) {
       return next(new ErrorHandler("Invalid email or password", 401));
     }
   
     sendToken(user, 200, res);
-  
+  }
+
+  catch (err) {
+    res.status(500).json({error: err})
+  }
   });
 
+
+
   logout = catchAsyncErrors(async (req, res, next) => {
+
+  try{
     res.cookie("token", null, {
       expires: new Date(Date.now()),
       httpOnly: true,
@@ -72,16 +82,27 @@ class UserController {
       success: true,
       message: "Logged Out",
     });
+  }
+  catch (err) {
+    res.status(500).json({error: err})
+  }
   });
 
+
   getUserDetails = catchAsyncErrors(async (req, res, next) => {
-    const user = await User.findById(req.user.id);
+
+  try{const user = await User.findById(req.user.id);
   
     res.status(200).json({
       success: true,
       user,
     });
+  }
+  catch (err) {
+    res.status(500).json({error: err})
+  }
   });
+
 
   updatePassword = catchAsyncErrors(async (req, res, next) => {
     const user = await User.findById(req.user.id).select("+password");

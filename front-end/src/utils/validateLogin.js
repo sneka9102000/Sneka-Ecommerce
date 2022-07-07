@@ -5,7 +5,6 @@ function ValidateLogin(email, password) {
         passwordError : ""
     }
 
-
     const emailRegex = /^([a-zA-Z0-9_\.\-]+)@([a-zA-Z]+)\.([a-zA-Z]{2,5})$/;
     const passwordRegex = /^[A-Za-z0-9]{3,15}$/;
 

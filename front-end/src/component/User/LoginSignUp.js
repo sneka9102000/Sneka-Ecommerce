@@ -10,6 +10,8 @@ import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import ValidateLogin from "../../utils/validateLogin";
+import ValidateRegister from "../../utils/validateRegister";
+
 
 
 const LoginSignUp = ({ location }) => {
@@ -19,6 +21,7 @@ const LoginSignUp = ({ location }) => {
 
   let [emailError, setEmailError] = useState("");
   let [passwordError, setPasswordError] = useState("");
+  let [nameError, setNameError] = useState("");
 
   const { error, isAuthenticated } = useSelector(
     (state) => state.user
@@ -47,30 +50,28 @@ const LoginSignUp = ({ location }) => {
 
   const validate = () => {
 
-    console.log("Cred : "+loginEmail, loginPassword);
+    console.log("Cred : " + loginEmail, loginPassword);
 
     const error = ValidateLogin(loginEmail, loginPassword)
+    const regerror = ValidateRegister(name, email, password)
 
+    let nameError = regerror.nameError;
     let emailError = error.emailError;
     let passwordError = error.passwordError;
 
-    console.log("Errors : "+emailError, passwordError)
+    if (nameError) {
+      setNameError(nameError);
+    }
 
     if (emailError) {
       setEmailError(emailError);
-      emailField.classList.add('is-invalid')
-    } else {
-      emailField.classList.remove('is-invalid')
     }
 
     if (passwordError) {
       setPasswordError(passwordError)
-      passwordField.classList.add('is-invalid')
-    } else {
-      passwordField.classList.remove('is-invalid')
     }
 
-    if (emailError || passwordError) {
+    if (emailError || passwordError || nameError) {
       return false;
     }
 
@@ -81,17 +82,24 @@ const LoginSignUp = ({ location }) => {
   const loginSubmit = (e) => {
     e.preventDefault();
     const isValid = validate();
-
-    dispatch(login(loginEmail, loginPassword))
+    if (isValid) {
+      dispatch(login(loginEmail, loginPassword))
+    }
   };
   const registerSubmit = (e) => {
     e.preventDefault();
 
+    const isValid = validate()
+
+    console.log("Valid statement: "+isValid)
+
     let userObject = {
       name, email, password, avatar, avatarPreview
     }
-    console.log("user object ", userObject)
-    dispatch(register(userObject))
+
+    if (isValid) {
+      dispatch(register(userObject))
+    }
   };
 
 
@@ -156,8 +164,8 @@ const LoginSignUp = ({ location }) => {
             <button ref={switcherTab}></button>
           </div>
           <form className="loginForm" ref={loginTab} onSubmit={loginSubmit}>
-            <div className="loginEmail" style={{display:"inline"}}>
-              <MailOutlineIcon style={{margin:"1% 0 0 0"}} />
+            <div className="loginEmail" style={{ display: "inline" }}>
+              <MailOutlineIcon style={{ margin: "1% 0 0 0" }} />
               <input
                 type="text"
                 placeholder="Enter your Email Id"
@@ -166,16 +174,16 @@ const LoginSignUp = ({ location }) => {
                 onChange={(e) => setLoginEmail(e.target.value)}
               />
               <strong>{emailError}</strong>
-          </div>
-            <div className="loginPassword" style={{display:"inline"}}>
-              <LockOpenIcon style={{margin:"1% 0 0 0"}} />
+            </div>
+            <div className="loginPassword" style={{ display: "block" }}>
+              <LockOpenIcon style={{ margin: "1% 0 0 0" }} />
               <input
                 type="password"
                 placeholder="Enter the Password"
                 id="password"
                 value={loginPassword}
                 onChange={(e) => setLoginPassword(e.target.value)}
-              /><br/>
+              /><br />
               <strong >{passwordError}</strong>
             </div>
             <Link to="/password/forgot">Forget Password ?</Link>
@@ -187,38 +195,41 @@ const LoginSignUp = ({ location }) => {
             encType="multipart/form-data"
             onSubmit={registerSubmit}
           >
-            <div className="signUpName">
-              <FaceIcon />
+            <div className="signUpName" >
+              <FaceIcon style={{ margin: "1% 0 0 0" }}/>
               <input
                 type="text"
                 placeholder="Enter your Name"
-                required
+                id="username"
                 name="name"
                 value={name}
                 onChange={registerDataChange}
               />
+              <strong>{nameError}</strong>
             </div>
             <div className="signUpEmail">
-              <MailOutlineIcon />
+              <MailOutlineIcon style={{ margin: "1% 0 0 0" }}/>
               <input
                 type="email"
                 placeholder="Enter your Email Id"
-                required
+                id="useremail"
                 name="email"
                 value={email}
                 onChange={registerDataChange}
               />
+              <strong>{emailError}</strong>
             </div>
             <div className="signUpPassword">
-              <LockOpenIcon />
+              <LockOpenIcon style={{ margin: "1% 0 0 0" }} />
               <input
                 type="password"
                 placeholder="Enter the Password"
-                required
+                id="userpassword"
                 name="password"
                 value={password}
                 onChange={registerDataChange}
               />
+              <strong>{passwordError}</strong>
             </div>
 
             <div id="registerImage">
