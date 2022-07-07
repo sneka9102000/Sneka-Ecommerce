@@ -7,6 +7,7 @@ class OrderController {
 
   // Create new Order
   newOrder = catchAsyncErrors(async (req, res, next) => {
+  try{
     const {
       shippingInfo,
       orderItems,
@@ -33,10 +34,16 @@ class OrderController {
       success: true,
       order,
     });
+  }
+  catch (err) {
+    res.status(500).json({error: err})
+  }
+
   });
 
   // get Single Order
   getSingleOrder = catchAsyncErrors(async (req, res, next) => {
+  try{
     const order = await Order.findById(req.params.id).populate(
       "user",
       "name email"
@@ -50,21 +57,29 @@ class OrderController {
       success: true,
       order,
     });
+  }
+  catch (err) {
+    res.status(500).json({error: err})
+  }
   });
 
   // get logged in user  Orders
   userOrders = catchAsyncErrors(async (req, res, next) => {
-    const orders = await Order.find({ user: req.user._id });
+  try{const orders = await Order.find({ user: req.user._id });
 
     res.status(200).json({
       success: true,
       orders,
     });
+  }
+  catch (err) {
+    res.status(500).json({error: err})
+  }
   });
 
   // get all Orders -- Admin
   getAllOrders = catchAsyncErrors(async (req, res, next) => {
-    const orders = await Order.find();
+  try{const orders = await Order.find();
 
     let totalAmount = 0;
 
@@ -77,11 +92,17 @@ class OrderController {
       totalAmount,
       orders,
     });
+  }
+  catch (err) {
+    res.status(500).json({error: err})
+  }
   });
 
   // update Order Status -- Admin
   updateOrder = catchAsyncErrors(async (req, res, next) => {
-    const order = await Order.findById(req.params.id);
+    try
+    {
+      const order = await Order.findById(req.params.id);
 
     if (!order) {
       return next(new ErrorHandler("Order not found with this Id", 404));
@@ -106,18 +127,28 @@ class OrderController {
     res.status(200).json({
       success: true,
     });
+  }
+  catch (err) {
+    res.status(500).json({error: err})
+  }
   });
 
   updateStock = async (id, quantity) => {
+    try{
     const product = await Product.findById(id);
 
     product.Stock -= quantity;
 
     await product.save({ validateBeforeSave: false });
   }
+  catch (err) {
+    res.status(500).json({error: err})
+  }
+  }
 
   // delete Order -- Admin
   deleteOrder = catchAsyncErrors(async (req, res, next) => {
+    try{
     const order = await Order.findById(req.params.id);
 
     if (!order) {
@@ -129,6 +160,10 @@ class OrderController {
     res.status(200).json({
       success: true,
     });
+  }
+  catch (err) {
+    res.status(500).json({error: err})
+  }
   });
 }
 
