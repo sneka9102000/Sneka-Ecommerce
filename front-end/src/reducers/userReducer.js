@@ -99,6 +99,7 @@ export const userReducer = (state = { user: {} }, action) => {
           ...state,
           loading: false,
           isUpdated: action.payload,
+          // user:
         };
   
       // case DELETE_USER_SUCCESS:avatarPreview

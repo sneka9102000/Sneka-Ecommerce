@@ -14,7 +14,7 @@ const Profile = ({ }) => {
     if (isAuthenticated === false) {
       navigate("/login");
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated,user]);
   return (
         <div>
           <MetaData title={`${user.name}'s Profile`} />

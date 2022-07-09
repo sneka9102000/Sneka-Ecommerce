@@ -93,6 +93,7 @@ try{ const  products = await Product.find();
 getAdminProducts = catchAsyncErrors(async (req, res, next) => {
 
 try{const products = await Product.find();
+  console.log("products",products)
 
   res.status(200).json({
     success: true,

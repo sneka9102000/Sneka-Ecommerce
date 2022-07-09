@@ -10,6 +10,7 @@ import { useAlert } from "react-alert";
 
 const OrderDetails = ({ match }) => {
   const { order, error, loading } = useSelector((state) => state.orderDetails);
+  const { user } = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
   const alert = useAlert();
@@ -19,7 +20,7 @@ const OrderDetails = ({ match }) => {
       alert.error(error);
       dispatch(clearErrors());
     }
-
+    console.log("user ",user.user)
     dispatch(getOrderDetails(match.params.id));
   }, [dispatch, alert, error, match.params.id]);
   return (
@@ -38,7 +39,7 @@ const OrderDetails = ({ match }) => {
               <div className="orderDetailsContainerBox">
                 <div>
                   <p>Name:</p>
-                  <span>{order.user && order.user.name}</span>
+                  <span>{user && user.name}</span>
                 </div>
                 <div>
                   <p>Phone:</p>

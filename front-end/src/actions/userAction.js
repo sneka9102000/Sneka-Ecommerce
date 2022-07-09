@@ -32,6 +32,7 @@ export const login = (email, password) => async (dispatch) => {
       { email, password },
       config
     );
+    localStorage.setItem("usersAccessToken",data.token)
 
     dispatch({ type: LOGIN_SUCCESS, payload: data.user });
   } catch (error) {
@@ -85,10 +86,13 @@ export const logout = () => async (dispatch) => {
 };
 // Update Profile
 export const updateProfile = (userData) => async (dispatch) => {
+  // const token=localStorage.getItem('usersAccessToken')
+  console.log(userData)
   try {
-    dispatch({ type: UPDATE_PROFILE_REQUEST });
+   dispatch({ type: UPDATE_PROFILE_REQUEST });
+   const token=localStorage.getItem('usersAccessToken')
 
-    const config = { headers: { "Content-Type": "multipart/form-data" } };
+    const config = { headers: { "Content-Type": "multipart/form-data","Authorization":token } };
 
     const { data } = await axios.put(`http://localhost:5050/api/v1/me/update`, userData, config);
     console.log("update "+data)

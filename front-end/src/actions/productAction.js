@@ -55,9 +55,15 @@ export const getProduct =   (keyword = "", currentPage = 1, price = [0, 25000], 
 // Get All Products For Admin
 export const getAdminProduct = () => async (dispatch) => {
   try {
+    console.log("called")
     dispatch({ type: ADMIN_PRODUCT_REQUEST });
+    const token=localStorage.getItem('usersAccessToken')
 
-    const { data } = await axios.get("http://localhost:5050/api/v1/admin/products");
+    const config = { headers: { "Content-Type": "multipart/form-data","Authorization":token } };
+
+
+    const { data } = await axios.get("http://localhost:5050/api/v1/admin/products",config);
+    console.log(data)
 
     dispatch({
       type: ADMIN_PRODUCT_SUCCESS,

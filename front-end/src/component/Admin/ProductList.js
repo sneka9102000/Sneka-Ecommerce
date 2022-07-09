@@ -33,24 +33,27 @@ const ProductList = ({ }) => {
   };
 
   useEffect(() => {
-    if (error) {
-      alert.error(error);
-      dispatch(clearErrors());
-    }
+  //  // console.log("hi")
+  //   if (error) {
+  //     alert.error(error);
+  //     dispatch(clearErrors());
+  //   }
 
-    if (deleteError) {
-      alert.error(deleteError);
-      dispatch(clearErrors());
-    }
+  //   if (deleteError) {
+  //     alert.error(deleteError);
+  //     dispatch(clearErrors());
+  //   }
 
-    if (isDeleted) {
-      alert.success("Product Deleted Successfully");
-      navigate("/admin/dashboard");
-      dispatch({ type: DELETE_PRODUCT_RESET });
-    }
+  //   if (isDeleted) {
+  //     alert.success("Product Deleted Successfully");
+  //     navigate("/admin/dashboard");
+  //     dispatch({ type: DELETE_PRODUCT_RESET });
+  //   }
 
     dispatch(getAdminProduct());
-  }, [dispatch, alert, error, deleteError,isDeleted]);
+  // }, [alert, error, deleteError,isDeleted]);
+  },[dispatch]);
+  console.log(products)
 
   const columns = [
     { field: "id", headerName: "Product ID", minWidth: 200, flex: 0.5 },

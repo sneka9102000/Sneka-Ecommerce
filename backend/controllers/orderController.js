@@ -65,8 +65,9 @@ class OrderController {
 
   // get logged in user  Orders
   userOrders = catchAsyncErrors(async (req, res, next) => {
-  try{const orders = await Order.find({ user: req.user._id });
-
+  try{
+    const orders = await Order.find({ user: req.user._id });
+console.log("orders",orders)
     res.status(200).json({
       success: true,
       orders,
@@ -79,8 +80,9 @@ class OrderController {
 
   // get all Orders -- Admin
   getAllOrders = catchAsyncErrors(async (req, res, next) => {
-  try{const orders = await Order.find();
-
+  try{
+    const orders = await Order.find();
+//console.log("orders",orders)
     let totalAmount = 0;
 
     orders.forEach((order) => {

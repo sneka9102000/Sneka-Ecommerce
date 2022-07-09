@@ -4,7 +4,7 @@ import Loader from "../layout/Loader/loader";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import FaceIcon from "@material-ui/icons/Face";
 import { useDispatch, useSelector } from "react-redux";
-import { clearErrors, updateProfile } from "../../actions/userAction";
+import { clearErrors, updateProfile,logout } from "../../actions/userAction";
 import { useAlert } from "react-alert";
 import { UPDATE_PROFILE_RESET } from "../../constants/userConstants";
 import MetaData from "../layout/MetaData";
@@ -31,6 +31,7 @@ const UpdateProfile = () => {
       }
 
     dispatch(updateProfile(userObject));
+  // navigate('/accout')
   };
 
   const updateProfileDataChange = (e) => {
@@ -62,8 +63,8 @@ const UpdateProfile = () => {
       alert.success("Profile Updated Successfully");
       // dispatch(loadUser());
 
-      navigate("/account");
-
+      dispatch(logout());
+      navigate('/')
       dispatch({
         type: UPDATE_PROFILE_RESET,
       });
@@ -124,7 +125,7 @@ const UpdateProfile = () => {
                 </div>
                 <input
                   type="submit"
-                  value="Update" onClick={() => changeHandler()}
+                  value="Update" onClick={() => updateProfileSubmit()}
                   className="updateProfileBtn"
                 />
               </form>

@@ -50,7 +50,7 @@ const ConfirmOrder = ({ history }) => {
             <div className="confirmshippingAreaBox">
               <div>
                 <p>Name:</p>
-                {/* <span>{user.name}</span> */}
+                <span>{state.user.name}</span>
               </div>
               <div>
                 <p>Phone:</p>

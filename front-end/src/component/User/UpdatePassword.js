@@ -42,7 +42,7 @@ const UpdatePassword = ({ history }) => {
     if (isUpdated) {
       alert.success("Password Updated Successfully");
 
-      navigate("/account");
+      navigate("/");
 
       dispatch({
         type: UPDATE_PASSWORD_RESET,
@@ -50,9 +50,9 @@ const UpdatePassword = ({ history }) => {
     }
   }, [dispatch, error, alert,isUpdated]);
 
-  const changeHandler = (event) => {
-    navigate('/account')
-  }
+  // const changeHandler = (event) => {
+  //   navigate('/account')
+  // }
 
   return (
     <Fragment>
@@ -102,7 +102,7 @@ const UpdatePassword = ({ history }) => {
                 </div>
                 <input
                   type="submit"
-                  value="Reset Password" onClick={() => changeHandler()}
+                  value="Reset Password" onClick={() => updatePasswordSubmit()}
                   className="updatePasswordBtn"
                 />
               </form>

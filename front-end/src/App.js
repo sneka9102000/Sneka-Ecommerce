@@ -56,6 +56,9 @@ function App(){
          <Route exact path="/me/update" element={<UpdateProfile/>} />
          <Route exact path="/password/update" element={<UpdatePassword/>} />
 
+
+         {/* <Route exact path="" /> */}
+
          {/* <Route exact path='/account' element={<ProtectedRoute/>}>
             <Route exact path='/account' element={<Profile />}/>
           </Route> */}
@@ -77,7 +80,7 @@ function App(){
           isAdmin={true}
           exact
           path="/admin/dashboard"
-          element={Dashboard}
+          element={<Dashboard/>}
         />
         <Route
           exact
@@ -87,9 +90,9 @@ function App(){
         />
         <Route
           exact
-          path="/admin/product"
+          path="/admin/products"
           isAdmin={true}
-          element={NewProduct}
+          element={<ProductList/>}
         />
 
         <Route

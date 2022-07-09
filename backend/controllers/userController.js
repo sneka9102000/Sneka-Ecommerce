@@ -117,7 +117,7 @@ class UserController {
     }
   
     user.password = await bcrypt.hash(req.body.newPassword, 10)
-  
+    console.log("user",user.password)
     await user.save();
   
     sendToken(user, 200, res);
@@ -133,8 +133,7 @@ class UserController {
       name: req.body.name,
       email: req.body.email,
     };
-  
-    if (req.body.avatar !== "") {
+    if (req.body.avatar !== undefined) {
       const user = await User.findById(req.user.id);
   
       const imageId = user.avatar.public_id;
@@ -158,7 +157,7 @@ class UserController {
       runValidators: true,
       useFindAndModify: false,
     });
-  
+    console.log(user)
     res.status(200).json({
       success: true,
     });
@@ -166,7 +165,8 @@ class UserController {
   catch (err) {
     res.status(500).json({error: err})
   }
-  });
+  }
+  );
 
   getAllUser = catchAsyncErrors(async (req, res, next) => {
   try{

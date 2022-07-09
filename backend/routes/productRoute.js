@@ -20,9 +20,9 @@ router.route("/product/:id").get(productController.getProductDetails);
 router.route("/review").put(isAuthenticatedUser,productController.createProductReview);
 
 router.route("/reviews").put(productController.getProductReviews).delete(isAuthenticatedUser,productController.deleteReview);
-router
-  .route("/admin/products")
-  .get(isAuthenticatedUser, authorizeRoles("admin"),productController.getAdminProducts);
+// router
+//   .route("/admin/products")
+//   .get(isAuthenticatedUser, authorizeRoles("admin"),productController.getAdminProducts);
 
 
 
