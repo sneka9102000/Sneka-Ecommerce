@@ -82,7 +82,7 @@ function App(){
         />
         <Route
           exact
-          path="/admin/products"
+          path="/admin/#container"
           isAdmin={true}
           element={ProductList}
         />

@@ -1,4 +1,4 @@
-import React,{ useEffect } from "react";
+import React,{Fragment, useEffect } from "react";
 import Sidebar from "./Sidebar.js"
 import "./dashboard.css";
 import { Typography } from "@material-ui/core";
@@ -12,29 +12,29 @@ import { getAllUsers } from "../../actions/userAction.js";
 
 
 const Dashboard = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // const { products } = useSelector((state) => state.products);
+  const { products } = useSelector((state) => state.products);
 
-  // let outOfStock = 0;
-  // // let totalAmount = 0;
-  //   // orders &&
-  //   //   orders.forEach((item) => {
-  //   //     totalAmount += item.totalPrice;
-  //   //   });
-  // products &&
-  //   products.forEach((item) => {
-  //     if (item.Stock === 0) {
-  //       outOfStock += 1;
-  //     }
-  //   });
+  let outOfStock = 0;
+  // let totalAmount = 0;
+    // orders &&
+    //   orders.forEach((item) => {
+    //     totalAmount += item.totalPrice;
+    //   });
+  products &&
+    products.forEach((item) => {
+      if (item.Stock === 0) {
+        outOfStock += 1;
+      }
+    });
 
-  //   useEffect(() => {
-  //   // dispatch(getAllUsers());{
-  //     dispatch(getAdminProduct());
-  //     // dispatch(getAllOrders());
-  //     // dispatch(getAllUsers());
-  //   }, [dispatch]);
+    useEffect(() => {
+    // dispatch(getAllUsers());{
+      dispatch(getAdminProduct());
+      // dispatch(getAllOrders());
+      // dispatch(getAllUsers());
+    }, [dispatch]);
   
   //   // let totalAmount = 0;
   //   // orders &&
@@ -61,7 +61,7 @@ const Dashboard = () => {
           <div className="dashboardSummaryBox2">
             <Link to="/admin/products">
               <p>Product</p>
-              <p>50</p>
+              <p>{products&&products.length}</p>
             </Link>
             <Link to="/admin/orders">
               <p>Orders</p>
