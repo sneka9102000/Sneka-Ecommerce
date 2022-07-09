@@ -15,10 +15,12 @@ import SpellcheckIcon from "@material-ui/icons/Spellcheck";
 import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
 import SideBar from "./Sidebar";
 import { UPDATE_PRODUCT_RESET } from "../../constants/productConstants";
+import { useNavigate } from "react-router-dom";
 
-const UpdateProduct = ({ history, match }) => {
+const UpdateProduct = ({ match }) => {
   const dispatch = useDispatch();
   const alert = useAlert();
+  const navigate= useNavigate();
 
   const { error, product } = useSelector((state) => state.productDetails);
 
