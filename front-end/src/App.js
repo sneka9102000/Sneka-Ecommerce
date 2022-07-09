@@ -22,10 +22,8 @@ import MyOrders from "./component/Order/MyOrders";
 import OrderDetails from "./component/Order/OrderDetails";
 import Dashboard from "./component/Admin/Dashboard.js";
 import ProductList from "./component/Admin/ProductList.js";
-import NewProduct from "./component/Admin/NewProduct";
-import UpdateProduct from "./component/Admin/UpdateProduct";
-
-
+import NewProduct from "./component/Admin/NewProduct.js";
+import UpdateProduct from "./component/Admin/UpdateProduct.js";
 
 
 
@@ -100,7 +98,6 @@ function App(){
           isAdmin={true}
           element={UpdateProduct}
         />
-
 
       </Routes>
       <Footer/>
