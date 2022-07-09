@@ -34,25 +34,25 @@ const ProductList = ({ }) => {
 
   useEffect(() => {
   //  // console.log("hi")
-  //   if (error) {
-  //     alert.error(error);
-  //     dispatch(clearErrors());
-  //   }
+    if (error) {
+      alert.error(error);
+      dispatch(clearErrors());
+    }
 
-  //   if (deleteError) {
-  //     alert.error(deleteError);
-  //     dispatch(clearErrors());
-  //   }
+    if (deleteError) {
+      alert.error(deleteError);
+      dispatch(clearErrors());
+    }
 
-  //   if (isDeleted) {
-  //     alert.success("Product Deleted Successfully");
-  //     navigate("/admin/dashboard");
-  //     dispatch({ type: DELETE_PRODUCT_RESET });
-  //   }
+    if (isDeleted) {
+      alert.success("Product Deleted Successfully");
+      navigate("/admin/dashboard");
+      dispatch({ type: DELETE_PRODUCT_RESET });
+    }
 
     dispatch(getAdminProduct());
   // }, [alert, error, deleteError,isDeleted]);
-  },[dispatch]);
+  },[dispatch,alert, error, deleteError,isDeleted]);
   console.log(products)
 
   const columns = [
@@ -90,7 +90,7 @@ const ProductList = ({ }) => {
       renderCell: (params) => {
         return (
           <Fragment>
-            <Link to={`/admin/#container/${params.getValue(params.id, "id")}`}>
+            <Link to={`/admin/product/${params.getValue(params.id, "id")}`}>
               <EditIcon />
             </Link>
 

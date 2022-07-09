@@ -107,23 +107,29 @@ export const createProduct = (productData) => async (dispatch) => {
 // Update Product
 export const updateProduct = (id, productData) => async (dispatch) => {
   try {
+    console.log("called")
     dispatch({ type: UPDATE_PRODUCT_REQUEST });
 
-    const config = {
-      headers: { "Content-Type": "application/json" },
-    };
+    // const config = {
+    //   headers: { "Content-Type": "application/json" },
+    // };
+    const token=localStorage.getItem('usersAccessToken')
+
+    const config = { headers: { "Content-Type": "multipart/form-data","Authorization":token } };
 
     const { data } = await axios.put(
       `/api/v1/admin/product/${id}`,
       productData,
       config
     );
+    console.log("data",data)
 
     dispatch({
       type: UPDATE_PRODUCT_SUCCESS,
       payload: data.success,
     });
   } catch (error) {
+    console.log("error",error)
     dispatch({
       type: UPDATE_PRODUCT_FAIL,
       payload: error.response.data.message,
@@ -154,9 +160,11 @@ export const deleteProduct = (id) => async (dispatch) => {
 // Get Products Details
 export const getProductDetails = (id) => async (dispatch) => {
     try {
+      console.log("dispatch")
       dispatch({ type: PRODUCT_DETAILS_REQUEST });
   
       const { data } = await axios.get(`http://localhost:5050/api/v1/product/${id}`);
+      console.log(data)
   
       dispatch({
         type: PRODUCT_DETAILS_SUCCESS,

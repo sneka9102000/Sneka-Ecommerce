@@ -6,6 +6,7 @@ const User = require("../models/userModel")
 
 
 exports.isAuthenticatedUser = catchAsyncErrors(async (req, res, next) => {
+  console.log("called")
   const token = req.header("Authorization");
   if (!token) {
     return next(new ErrorHandler("Please Login to access this resource", 401));
@@ -24,7 +25,7 @@ exports.authorizeRoles = (...roles) => {
   return (req, res, next) => {
     // console.log(req.user.role)
     if (roles != req.user.role) {
-      // console.log("not authorized")
+    console.log("not authorized")
       return next(
         new ErrorHandler(
           `Role: ${req.user.role} is not allowed to access this resouce `,
@@ -32,7 +33,7 @@ exports.authorizeRoles = (...roles) => {
         )
       );
     }
-    // console.log("authorized")
+  console.log("authorized")
     next();
   };
 };

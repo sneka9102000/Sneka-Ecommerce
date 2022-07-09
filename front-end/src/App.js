@@ -99,7 +99,7 @@ function App(){
           exact
           path="/admin/product/:id"
           isAdmin={true}
-          element={UpdateProduct}
+          element={<UpdateProduct/>}
         />
 
       </Routes>

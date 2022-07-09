@@ -15,7 +15,7 @@ import SpellcheckIcon from "@material-ui/icons/Spellcheck";
 import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
 import SideBar from "./Sidebar";
 import { UPDATE_PRODUCT_RESET } from "../../constants/productConstants";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const UpdateProduct = ({ match }) => {
   const dispatch = useDispatch();
@@ -49,12 +49,16 @@ const UpdateProduct = ({ match }) => {
     "Citizen",
   ];
 
-  const productId = match.params.id;
-
+  const {id} = useParams();
+  const productId=id;
+  console.log(productId)
+  //      getProductDetails(productId)
+  //console.log(product.name)
   useEffect(() => {
     if (product && product._id !== productId) {
       dispatch(getProductDetails(productId));
-    } else {
+    // } 
+    // else {
       setName(product.name);
       setDescription(product.description);
       setPrice(product.price);
@@ -125,6 +129,7 @@ const UpdateProduct = ({ match }) => {
     });
   };
 
+
   return (
     <Fragment>
       <MetaData title="Create Product" />
@@ -136,7 +141,7 @@ const UpdateProduct = ({ match }) => {
             encType="multipart/form-data"
             onSubmit={updateProductSubmitHandler}
           >
-            <h1>Create Product</h1>
+            <h1>Update Product</h1>
 
             <div>
               <SpellcheckIcon />
