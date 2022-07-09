@@ -2,6 +2,7 @@ const { addListener } = require("../app");
 const Product = require("../models/productModel");
 const ErrorHandler = require("../utils/errorhandler");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors")
+const cloudinary=require("cloudinary");
 
 class ProductController {
   createProduct = catchAsyncErrors(async (req, res, next) => {
