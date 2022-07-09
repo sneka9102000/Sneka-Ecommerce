@@ -23,6 +23,8 @@ import OrderDetails from "./component/Order/OrderDetails";
 import Dashboard from "./component/Admin/Dashboard.js";
 import ProductList from "./component/Admin/ProductList.js";
 import NewProduct from "./component/Admin/NewProduct";
+import UpdateProduct from "./component/Admin/UpdateProduct";
+
 
 
 
@@ -91,6 +93,14 @@ function App(){
           isAdmin={true}
           element={NewProduct}
         />
+
+        <Route
+          exact
+          path="/admin/product/:id"
+          isAdmin={true}
+          element={UpdateProduct}
+        />
+
 
       </Routes>
       <Footer/>

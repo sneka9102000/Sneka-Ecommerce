@@ -5,20 +5,22 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   clearErrors,
   getAdminProduct,
+  deleteProduct,
 } from "../../actions/productAction";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAlert } from "react-alert";
 import { Button } from "@material-ui/core";
 import MetaData from "../layout/MetaData";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import SideBar from "./Sidebar";
-// import { DELETE_PRODUCT_RESET } from "../../constants/productConstants";
+import { DELETE_PRODUCT_RESET } from "../../constants/productConstants";
 
-const ProductList = ({ history }) => {
+const ProductList = ({ }) => {
   const dispatch = useDispatch();
 
   const alert = useAlert();
+  const navigate = useNavigate();
 
   const { error, products } = useSelector((state) => state.products);
 
@@ -27,7 +29,7 @@ const ProductList = ({ history }) => {
   );
 
   const deleteProductHandler = (id) => {
-    // dispatch(deleteProduct(id));
+    dispatch(deleteProduct(id));
   };
 
   useEffect(() => {
@@ -43,12 +45,12 @@ const ProductList = ({ history }) => {
 
     if (isDeleted) {
       alert.success("Product Deleted Successfully");
-      history.push("/admin/dashboard");
-      // dispatch({ type: DELETE_PRODUCT_RESET });
+      navigate("/admin/dashboard");
+      dispatch({ type: DELETE_PRODUCT_RESET });
     }
 
     dispatch(getAdminProduct());
-  }, [dispatch, alert, error, deleteError, history, isDeleted]);
+  }, [dispatch, alert, error, deleteError,isDeleted]);
 
   const columns = [
     { field: "id", headerName: "Product ID", minWidth: 200, flex: 0.5 },
